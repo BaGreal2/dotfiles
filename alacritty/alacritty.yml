@@ -1,0 +1,189 @@
+env:
+  TERM: xterm-256color
+
+shell:
+  program: /opt/homebrew/bin/fish
+
+window:
+  dimensions:
+    columns: 0
+    lines: 0
+
+  padding:
+    x: 5
+    y: 10
+
+  dynamic_padding: false
+  decorations: buttonless
+  startup_mode: Windowed
+  opacity: 0.95
+
+scrolling:
+  history: 10000
+  multiplier: 3
+  auto_scroll: false
+
+tabspaces: 2
+
+draw_bold_text_with_bright_colors: true
+
+font:
+  normal:
+    family: "FiraCode Nerd Font Mono"
+    style: Regular
+
+  bold:
+    family: "FiraCode Nerd Font Mono"
+    style: SemiBold
+
+  italic:
+    family: "FiraCode Nerd Font Mono"
+    style: Italic
+
+  size: 15.0
+
+  offset:
+    x: 0
+    y: 0
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+  AppleFontSmoothing: true
+
+debug:
+  render_timer: false
+  persistent_logging: false
+  log_level: Warn
+  print_events: false
+  ref_test: false
+
+# ------ ROSE PINE ------
+colors:
+  primary:
+    background: "0x191724"
+    foreground: "0xe0def4"
+  # cursor:
+  #   text: "0xe0def4"
+  #   cursor: "0x524f67"
+  # vi_mode_cursor:
+  #   text: "0xe0def4"
+  #   cursor: "0x524f67"
+  line_indicator:
+    foreground: None
+    background: None
+  selection:
+    text: "0xe0def4"
+    background: "0x403d52"
+  normal:
+    black: "0x26233a"
+    red: "0xeb6f92"
+    green: "0x31748f"
+    yellow: "0xf6c177"
+    blue: "0x9ccfd8"
+    magenta: "0xc4a7e7"
+    cyan: "0xebbcba"
+    white: "0xe0def4"
+  bright:
+    black: "0x6e6a86"
+    red: "0xeb6f92"
+    green: "0x31748f"
+    yellow: "0xf6c177"
+    blue: "0x9ccfd8"
+    magenta: "0xc4a7e7"
+    cyan: "0xebbcba"
+    white: "0xe0def4"
+  hints:
+    start:
+      foreground: "#908caa"
+      background: "#1f1d2e"
+    end:
+      foreground: "#6e6a86"
+      background: "#1f1d2e"
+
+# ------ ONE DARK ------
+# colors:
+#   primary:
+#     background: "0x1e2127"
+#     foreground: "0xabb2bf"
+#
+#     #dim_foreground: '0x9a9a9a'
+#     bright_foreground: "0xe6efff"
+#
+#   # Colors which should be used to draw the terminal cursor. If these are unset,
+#   # the cursor color will be the inverse of the cell color.
+#   #cursor:
+#   #  text: '0x000000'
+#   #  cursor: '0xffffff'
+#
+#   # Normal colors
+#   normal:
+#     black: "0x1e2127"
+#     red: "0xe06c75"
+#     green: "0x98c379"
+#     yellow: "0xd19a66"
+#     blue: "0x61afef"
+#     magenta: "0xc678dd"
+#     cyan: "0x56b6c2"
+#     white: "0x828791"
+#
+#   # Bright colors
+#   bright:
+#     black: "0x5c6370"
+#     red: "0xe06c75"
+#     green: "0x98c379"
+#     yellow: "0xd19a66"
+#     blue: "0x61afef"
+#     magenta: "0xc678dd"
+#     cyan: "0x56b6c2"
+#     white: "0xe6efff"
+#
+#   # Dim colors
+#   #
+#   # If the dim colors are not set, they will be calculated automatically based
+#   # on the `normal` colors.
+#   dim:
+#     black: "0x1e2127"
+#     red: "0xe06c75"
+#     green: "0x98c379"
+#     yellow: "0xd19a66"
+#     blue: "0x61afef"
+#     magenta: "0xc678dd"
+#     cyan: "0x56b6c2"
+#     white: "0x828791"
+
+visual_bell:
+  animation: EaseOutExpo
+  duration: 0
+
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+
+mouse:
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+  hide_when_typing: false
+
+  hints:
+    launcher: open
+
+selection:
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+
+  save_to_clipboard: false
+
+dynamic_title: true
+
+cursor:
+  style: Block
+  unfocused_hollow: true
+
+key_bindings:
+  - { key: N, mods: Command, action: SpawnNewInstance }
+  - { key: W, mods: Command, action: Quit }
+  - { key: Q, mods: Command, action: Quit }
+  - { key: Return, mods: Alt, action: ToggleFullscreen }
+  - { key: U, mods: Alt, chars: "\x1bu" }
+
+live_config_reload: true
