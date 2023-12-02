@@ -1,63 +1,72 @@
-local status, packer = pcall(require, 'packer')
-if (not status) then
-  print("Packer is not installed")
-  return
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-vim.cmd [[packadd packer.nvim]]
+local status, lazy = pcall(require, 'lazy')
+if (not status) then return end
 
-packer.startup(function(use)
-  use 'wbthomason/packer.nvim'
-  --use {
+
+lazy.setup({
+  --{
   --  'svrana/neosolarized.nvim',
-  --  requires = { 'tjdevries/colorbuddy.nvim' }
-  --}
-  use { 'rose-pine/neovim', as = 'rose-pine' }
-  -- use 'navarasu/onedark.nvim'
+  --  dependencies = { 'tjdevries/colorbuddy.nvim' }
+  --},
+  { 'rose-pine/neovim', name = 'rose-pine' },
+  -- 'navarasu/onedark.nvim',
 
 
-  use 'kyazdani42/nvim-web-devicons'
-  use 'glepnir/lspsaga.nvim'
+  'kyazdani42/nvim-web-devicons',
+  'glepnir/lspsaga.nvim',
 
   -- snippets
-  use 'L3MON4D3/LuaSnip'
-  use { 'saadparwaiz1/cmp_luasnip' }
-  use 'rafamadriz/friendly-snippets'
+  'L3MON4D3/LuaSnip',
+  'saadparwaiz1/cmp_luasnip',
+  'rafamadriz/friendly-snippets',
 
-  use 'hoob3rt/lualine.nvim'
-  use 'onsails/lspkind-nvim'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/nvim-cmp'
-  use 'neovim/nvim-lspconfig'
-  use {
+  'hoob3rt/lualine.nvim',
+  'onsails/lspkind-nvim',
+  'hrsh7th/cmp-buffer',
+  'hrsh7th/cmp-nvim-lsp',
+  'hrsh7th/nvim-cmp',
+  'neovim/nvim-lspconfig',
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
-  -- use 'mrjones2014/nvim-ts-rainbow'
+    build = ':TSUpdate'
+  },
+  -- 'mrjones2014/nvim-ts-rainbow',
 
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use 'MunifTanjim/prettier.nvim'
+  'jose-elias-alvarez/null-ls.nvim',
+  'MunifTanjim/prettier.nvim',
 
-  use 'windwp/nvim-autopairs'
-  use 'windwp/nvim-ts-autotag'
+  'windwp/nvim-autopairs',
+  'windwp/nvim-ts-autotag',
 
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-file-browser.nvim'
+  'nvim-lua/plenary.nvim',
+  'nvim-telescope/telescope.nvim',
+  'nvim-telescope/telescope-file-browser.nvim',
 
-  use 'akinsho/nvim-bufferline.lua'
-  use 'norcalli/nvim-colorizer.lua'
+  'akinsho/nvim-bufferline.lua',
+  'norcalli/nvim-colorizer.lua',
 
-  use 'lewis6991/gitsigns.nvim'
-  use 'dinhhuy258/git.nvim'
+  'lewis6991/gitsigns.nvim',
+  'dinhhuy258/git.nvim',
 
-  use 'numToStr/Comment.nvim'
+  'numToStr/Comment.nvim',
 
-  use "numToStr/FTerm.nvim"
+  'numToStr/FTerm.nvim',
 
   -- Markdown
-  use { "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
+  {
+    "iamcco/markdown-preview.nvim",
+    build = function() vim.fn["mkdp#util#install"]() end,
   }
-end)
+})
