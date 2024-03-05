@@ -16,7 +16,7 @@ telescope.setup {
         ["q"] = actions.close
       },
     },
-    file_ignore_patterns = { "node%_modules/.*", ".DS_Store" }
+    file_ignore_patterns = { "node%_modules/.*", ".DS_Store", ".git/*" }
   },
   extensions = {
     file_browser = {
@@ -32,6 +32,7 @@ telescope.setup {
           -- your custom normal mode mappings
           ["N"] = fb_actions.create,
           ["h"] = fb_actions.goto_parent_dir,
+          ["m"] = fb_actions.toggle_hidden,
           ["/"] = function()
             vim.cmd('startinsert')
           end

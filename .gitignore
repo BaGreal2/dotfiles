@@ -3,4 +3,7 @@ configstore/
 xbuild/
 safari/
 zed/
+fish/conf.d/
+fish/functions/
+fish/completions/
 **/.DS_Store
