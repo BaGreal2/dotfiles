@@ -7,4 +7,6 @@ raycast/
 fish/conf.d/
 fish/functions/
 fish/completions/
+linearmouse/*
+xbuild/*
 **/.DS_Store
