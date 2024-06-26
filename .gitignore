@@ -9,4 +9,5 @@ fish/functions/
 fish/completions/
 linearmouse/*
 xbuild/*
+nvim/lazy-lock.json
 **/.DS_Store

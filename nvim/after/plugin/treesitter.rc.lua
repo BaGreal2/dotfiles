@@ -22,10 +22,11 @@ ts.setup {
     "tsx",
     "toml",
     "fish",
-    "php",
     "json",
     "yaml",
     "swift",
+    "scss",
+    "gitignore",
     "css",
     "html",
     "lua",
@@ -35,7 +36,8 @@ ts.setup {
     "cpp",
     "python",
     "markdown",
-    "markdown_inline"
+    "markdown_inline",
+    "rust"
   },
   autotag = {
     enable = true,
