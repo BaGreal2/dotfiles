@@ -10,4 +10,5 @@ fish/completions/
 linearmouse/*
 xbuild/*
 nvim/lazy-lock.json
+github-copilot/
 **/.DS_Store
