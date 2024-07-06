@@ -1,0 +1,6 @@
+-- local status, supermaven = pcall(require, "supermaven-nvim")
+-- if (not status) then return end
+--
+-- supermaven.setup({
+--
+-- })

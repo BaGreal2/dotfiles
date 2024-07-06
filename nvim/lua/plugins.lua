@@ -70,5 +70,7 @@ lazy.setup({
     build = function() vim.fn["mkdp#util#install"]() end,
   },
 
-  'zbirenbaum/copilot.lua'
+  'zbirenbaum/copilot.lua',
+
+  -- 'supermaven-inc/supermaven-nvim'
 })
