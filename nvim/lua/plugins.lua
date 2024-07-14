@@ -20,8 +20,9 @@ lazy.setup({
   --  'svrana/neosolarized.nvim',
   --  dependencies = { 'tjdevries/colorbuddy.nvim' }
   --},
-  { 'rose-pine/neovim', name = 'rose-pine' },
+  -- { 'rose-pine/neovim', name = 'rose-pine' },
   -- 'navarasu/onedark.nvim',
+  'rebelot/kanagawa.nvim',
 
 
   'kyazdani42/nvim-web-devicons',
@@ -61,16 +62,20 @@ lazy.setup({
   'dinhhuy258/git.nvim',
 
   'numToStr/Comment.nvim',
+  'JoosepAlviste/nvim-ts-context-commentstring',
 
   'numToStr/FTerm.nvim',
 
-  -- Markdown
-  {
-    "iamcco/markdown-preview.nvim",
-    build = function() vim.fn["mkdp#util#install"]() end,
-  },
-
   'zbirenbaum/copilot.lua',
+
+  {
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim',
+    },
+    config = true
+  }
 
   -- 'supermaven-inc/supermaven-nvim'
 })

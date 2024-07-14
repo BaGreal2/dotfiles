@@ -5,7 +5,8 @@ lualine.setup {
   options = {
     icons_enabled = true,
     -- theme = 'onedark',
-    theme = 'rose-pine',
+    -- theme = 'rose-pine',
+    theme = 'kanagawa',
     section_separators = { left = '', right = '' },
     component_separators = { left = '', right = '' },
     disabled_filetypes = {}
