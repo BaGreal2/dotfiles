@@ -1,0 +1,16 @@
+**/.DS_Store
+
+fish/functions/
+fish/completions/
+fish/conf.d/
+
+nvim/.luarc.json
+nvim/lazy-lock.json
+nvim/lazyvim.json
+
+tmux/swap-pane
+tmux/plugins
+
+iterm2/
+
+karabiner/automatic_backups/

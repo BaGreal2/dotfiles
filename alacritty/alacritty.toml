@@ -1,0 +1,142 @@
+live_config_reload = true
+# tabspaces = 2
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "0x6e6a86"
+blue = "0x9ccfd8"
+cyan = "0xebbcba"
+green = "0x31748f"
+magenta = "0xc4a7e7"
+red = "0xeb6f92"
+white = "0xe0def4"
+yellow = "0xf6c177"
+
+[colors.hints.end]
+background = "#1f1d2e"
+foreground = "#6e6a86"
+
+[colors.hints.start]
+background = "#1f1d2e"
+foreground = "#908caa"
+
+[colors.line_indicator]
+background = "None"
+foreground = "None"
+
+[colors.normal]
+black = "0x26233a"
+blue = "0x9ccfd8"
+cyan = "0xebbcba"
+green = "0x31748f"
+magenta = "0xc4a7e7"
+red = "0xeb6f92"
+white = "0xe0def4"
+yellow = "0xf6c177"
+
+[colors.primary]
+background = "0x191724"
+foreground = "0xe0def4"
+
+[colors.selection]
+background = "0x403d52"
+text = "0xe0def4"
+
+[cursor]
+style = "Block"
+unfocused_hollow = true
+
+[debug]
+log_level = "Warn"
+persistent_logging = false
+print_events = false
+render_timer = false
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 15.0
+
+[font.bold]
+family = "FiraCode Nerd Font Mono"
+style = "SemiBold"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "FiraCode Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "FiraCode Nerd Font Mono"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "Quit"
+key = "W"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "Quit"
+key = "Q"
+mods = "Command"
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "Return"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bu"
+key = "U"
+mods = "Alt"
+
+[mouse]
+hide_when_typing = false
+
+[[mouse.bindings]]
+action = "PasteSelection"
+mouse = "Middle"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = false
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+[shell]
+program = "/opt/homebrew/bin/fish"
+
+# [visual_bell]
+# animation = "EaseOutExpo"
+# duration = 0
+
+[window]
+decorations = "buttonless"
+dynamic_padding = false
+opacity = 0.95
+startup_mode = "Windowed"
+
+[window.dimensions]
+columns = 0
+lines = 0
+
+[window.padding]
+x = 5
+y = 10
