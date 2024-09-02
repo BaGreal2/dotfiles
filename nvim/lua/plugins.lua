@@ -79,7 +79,9 @@ lazy.setup({
     main = 'render-markdown'
   },
 
-  checker = { enabled = true }, -- automatically check for plugin updates
+  checker = {
+    enabled = true -- automatically check for plugin updates
+  },
   performance = {
     cache = {
       enabled = true,
