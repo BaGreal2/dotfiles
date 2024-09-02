@@ -14,6 +14,7 @@ chmod +x create-symlink.sh
 ### Example:
 
 > .config -> /Users/username/.config
+
 > dotfiles -> /Users/username/dotfiles
 
 ```bash
