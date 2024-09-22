@@ -22,7 +22,8 @@ lazy.setup({
   --},
   -- { 'rose-pine/neovim', name = 'rose-pine' },
   -- 'navarasu/onedark.nvim',
-  'rebelot/kanagawa.nvim',
+  -- 'rebelot/kanagawa.nvim',
+  'p00f/alabaster.nvim',
 
   'kyazdani42/nvim-web-devicons',
   'glepnir/lspsaga.nvim',

@@ -17,7 +17,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- TypeScript
-nvim_lsp.tsserver.setup {
+nvim_lsp.ts_ls.setup {
   filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
   cmd = { "typescript-language-server", "--stdio" }
 }
