@@ -1,3 +1,5 @@
+-- vim.g.alabaster_dim_comments = true
+
 vim.cmd('colorscheme alabaster')
 
 -- Set background to transparent
