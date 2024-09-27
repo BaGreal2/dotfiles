@@ -12,6 +12,15 @@ local on_attach = function(client, bufnr)
   end
 end
 
+local on_attach_csharp = function(client, bufnr)
+  -- format on save for csharp (sync, without check)
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = vim.api.nvim_create_augroup("Format", { clear = true }),
+    buffer = bufnr,
+    callback = function() vim.lsp.buf.format() end
+  })
+end
+
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -50,29 +59,22 @@ nvim_lsp.clangd.setup {
   cmd = { "clangd", "--offset-encoding=utf-16" }
 }
 
+-- C#
+nvim_lsp.csharp_ls.setup {
+  on_attach = on_attach_csharp,
+}
+
+-- Rust
 nvim_lsp.rust_analyzer.setup {
   on_attach = on_attach,
 }
 
--- nvim_lsp.pylsp.setup {
---   on_attach = on_attach,
---   filetypes = { "python" },
---   cmd = { "pylsp" },
---   settings = {
---     pylsp = {
---       plugins = {
---         pycodestyle = {
---           ignore = { 'W391' },
---           maxLineLength = 140
---         }
---       }
---     }
---   }
--- }
+-- Python
 nvim_lsp.pyright.setup {
   on_attach = on_attach,
 }
 
+-- LUA
 nvim_lsp.lua_ls.setup {
   on_attach = on_attach,
   settings = {
@@ -88,6 +90,7 @@ nvim_lsp.lua_ls.setup {
   }
 }
 
+-- SQL
 nvim_lsp.sqlls.setup {
   on_attach = on_attach,
 }
