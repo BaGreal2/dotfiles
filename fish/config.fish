@@ -67,10 +67,13 @@ end
 
 # FZF END
 
-set --export PATH /usr/local/opt/llvm/bin $PATH
+# set --export PATH /usr/local/opt/llvm/bin $PATH
 set --export LDFLAGS -L/usr/local/opt/llvm/lib
 
-set --export PATH $HOME/.cargo/bin $PATH
+# set --export PATH $HOME/.cargo/bin $PATH
+
+set --export PATH $HOME/.dotnet/tools $PATH
+
 set -Ux BAT_THEME Nord
 
 set --export LC_ALL en_US.UTF-8  
