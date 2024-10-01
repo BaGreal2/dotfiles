@@ -13,7 +13,8 @@ telescope.setup {
   defaults = {
     mappings = {
       n = {
-        ["q"] = actions.close
+        ["q"] = actions.close,
+        ["d"] = actions.delete_buffer,
       },
     },
     file_ignore_patterns = { "node%_modules/.*", ".DS_Store", ".git/*", "coverage/.*" }
@@ -69,7 +70,11 @@ vim.keymap.set('n', ';r', function()
   builtin.live_grep()
 end)
 vim.keymap.set('n', '\\\\', function()
-  builtin.buffers()
+  builtin.buffers({
+    sort_mru = true,
+    sort_lastused = true,
+    initial_mode = "normal",
+  })
 end)
 vim.keymap.set('n', ';t', function()
   builtin.help_tags()
