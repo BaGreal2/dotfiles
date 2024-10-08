@@ -6,11 +6,11 @@ cmp.setup({
   completion = {
     autocomplete = false,
   },
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
+  -- snippet = {
+  --   expand = function(args)
+  --     require('luasnip').lsp_expand(args.body)
+  --   end,
+  -- },
   mapping = cmp.mapping.preset.insert({
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -22,7 +22,7 @@ cmp.setup({
     }),
   }),
   sources = cmp.config.sources({
-    { name = "luasnip", option = { show_autosnippets = true } },
+    -- { name = "luasnip", option = { show_autosnippets = true } },
     { name = 'nvim_lsp' },
     { name = 'buffer' },
   }),

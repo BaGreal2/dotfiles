@@ -29,8 +29,8 @@ lazy.setup({
   'glepnir/lspsaga.nvim',
 
   -- snippets
-  'L3MON4D3/LuaSnip',
-  'saadparwaiz1/cmp_luasnip',
+  -- 'L3MON4D3/LuaSnip',
+  -- 'saadparwaiz1/cmp_luasnip',
 
   'hoob3rt/lualine.nvim',
   'onsails/lspkind-nvim',
@@ -47,7 +47,10 @@ lazy.setup({
   'MunifTanjim/prettier.nvim',
 
   'windwp/nvim-autopairs',
-  'windwp/nvim-ts-autotag',
+  {
+    'windwp/nvim-ts-autotag',
+    ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' }
+  },
 
   'nvim-lua/plenary.nvim',
   'nvim-telescope/telescope.nvim',
@@ -66,18 +69,20 @@ lazy.setup({
 
   'zbirenbaum/copilot.lua',
 
-  {
-    'NeogitOrg/neogit',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'sindrets/diffview.nvim',
-    },
-    config = true
-  },
+  -- {
+  --   'NeogitOrg/neogit',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'sindrets/diffview.nvim',
+  --   },
+  --   config = true
+  -- },
 
   {
     'MeanderingProgrammer/markdown.nvim',
-    main = 'render-markdown'
+    main = 'render-markdown',
+    ft = { 'markdown' }
+
   },
 
   checker = {
