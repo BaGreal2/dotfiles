@@ -3,6 +3,8 @@ if (not status) then return end
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
+local path_to_disable = "/Users/macbook/Developer/Work/Vektor/vektor-dashboard-frontend"
+
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     filter = function(client)
@@ -27,7 +29,8 @@ null_ls.setup({
 
   -- For formatting ts/js based on eslint/prettier
   on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
+    local current_file = vim.fn.expand("%:p")
+    if client.supports_method("textDocument/formatting") and not current_file:find(path_to_disable, 1, true) then
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = augroup,

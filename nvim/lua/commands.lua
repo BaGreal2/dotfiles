@@ -1,0 +1,5 @@
+vim.api.nvim_create_user_command('Esfix', function()
+  local file = vim.fn.expand('%:p')
+  print("Formatted current file.")
+  vim.cmd("silent! !eslint_d --fix " .. file)
+end, {})

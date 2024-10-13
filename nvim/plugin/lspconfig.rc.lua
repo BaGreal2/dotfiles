@@ -67,6 +67,7 @@ nvim_lsp.csharp_ls.setup {
 -- Rust
 nvim_lsp.rust_analyzer.setup {
   on_attach = on_attach,
+  cmd = { "rust-analyzer" }
 }
 
 -- Python
@@ -76,7 +77,7 @@ nvim_lsp.pyright.setup {
 
 -- LUA
 nvim_lsp.lua_ls.setup {
-  on_attach = on_attach,
+  -- on_attach = on_attach,
   settings = {
     Lua = {
       diagnostics = {
