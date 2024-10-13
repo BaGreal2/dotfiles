@@ -74,6 +74,11 @@ set --export LDFLAGS -L/usr/local/opt/llvm/lib
 
 set --export PATH $HOME/.dotnet/tools $PATH
 
+set --export PATH $HOME/.cargo/bin $PATH
+
+set --export NODE_OPTIONS "--max-old-space-size=16384"
+set --export TSC_NONPOLLING_WATCHER true
+
 set -Ux BAT_THEME Nord
 
 set --export LC_ALL en_US.UTF-8  
