@@ -64,7 +64,7 @@ lazy.setup({
   'dinhhuy258/git.nvim',
 
   'numToStr/Comment.nvim',
-  'JoosepAlviste/nvim-ts-context-commentstring',
+  -- 'JoosepAlviste/nvim-ts-context-commentstring',
 
   'numToStr/FTerm.nvim',
 
@@ -83,7 +83,6 @@ lazy.setup({
     'MeanderingProgrammer/markdown.nvim',
     main = 'render-markdown',
     ft = { 'markdown' }
-
   },
 
   checker = {
