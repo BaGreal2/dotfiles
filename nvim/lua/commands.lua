@@ -19,5 +19,7 @@ vim.api.nvim_create_user_command('Compile', function()
     print("No compile command set. Use :SetCompileCommand to set one.")
   else
     vim.cmd("split | resize 10 | term " .. _G.compile_cmd)
+    vim.cmd("startinsert!")
+    vim.api.nvim_command('normal! G')
   end
 end, {})
