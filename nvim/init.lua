@@ -3,7 +3,6 @@ require('highlights')
 require('maps')
 require('plugins')
 require('commands')
-require('autocmd')
 
 local has = function(x)
   return vim.fn.has(x) == 1

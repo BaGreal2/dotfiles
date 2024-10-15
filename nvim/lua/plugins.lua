@@ -42,6 +42,7 @@ lazy.setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate'
   },
+  'yioneko/nvim-vtsls',
 
   'jose-elias-alvarez/null-ls.nvim',
   'MunifTanjim/prettier.nvim',

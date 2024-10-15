@@ -7,7 +7,7 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = vim.api.nvim_create_augroup("Format", { clear = true }),
       buffer = bufnr,
-      callback = function() vim.lsp.buf.format { async = true } end
+      callback = function() vim.lsp.buf.format() end
     })
   end
 end
@@ -26,10 +26,14 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- TypeScript
-nvim_lsp.ts_ls.setup {
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
-  cmd = { "typescript-language-server", "--stdio" }
-}
+require("lspconfig.configs").vtsls = require("vtsls").lspconfig
+
+nvim_lsp.vtsls.setup {}
+--
+-- nvim_lsp.ts_ls.setup {
+--   filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
+--   cmd = { "typescript-language-server", "--stdio" }
+-- }
 
 -- HTML
 nvim_lsp.html.setup {
@@ -43,9 +47,9 @@ nvim_lsp.html.setup {
 }
 
 -- CSS
-nvim_lsp.cssmodules_ls.setup {
-  on_attach = on_attach,
-}
+-- nvim_lsp.cssmodules_ls.setup {
+--   on_attach = on_attach,
+-- }
 nvim_lsp.cssls.setup {
   on_attach = on_attach,
   capabilities = capabilities
@@ -77,7 +81,7 @@ nvim_lsp.pyright.setup {
 
 -- LUA
 nvim_lsp.lua_ls.setup {
-  -- on_attach = on_attach,
+  on_attach = on_attach,
   settings = {
     Lua = {
       diagnostics = {
