@@ -11,6 +11,7 @@ local fb_actions = require "telescope".extensions.file_browser.actions
 
 telescope.setup {
   defaults = {
+    disable_devicons = true,
     mappings = {
       n = {
         ["q"] = actions.close,
@@ -55,6 +56,7 @@ vim.keymap.set("n", "sf", function()
     grouped = true,
     previewer = false,
     initial_mode = "normal",
+    disable_devicons = true,
     layout_config = { height = 40 }
   })
 end)
@@ -64,7 +66,11 @@ vim.keymap.set('n', ';f',
   function()
     builtin.find_files({
       no_ignore = false,
-      hidden = true
+      hidden = true,
+      layout_config = { width = 0.5 },
+      preview = {
+        hide_on_startup = true
+      }
     })
   end)
 vim.keymap.set('n', ';r', function()

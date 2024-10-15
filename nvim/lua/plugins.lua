@@ -5,7 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+    "--branch=stable",
     lazypath,
   })
 end
@@ -16,21 +16,9 @@ if (not status) then return end
 
 
 lazy.setup({
-  --{
-  --  'svrana/neosolarized.nvim',
-  --  dependencies = { 'tjdevries/colorbuddy.nvim' }
-  --},
-  -- { 'rose-pine/neovim', name = 'rose-pine' },
-  -- 'navarasu/onedark.nvim',
-  -- 'rebelot/kanagawa.nvim',
   'p00f/alabaster.nvim',
 
-  'kyazdani42/nvim-web-devicons',
   'glepnir/lspsaga.nvim',
-
-  -- snippets
-  -- 'L3MON4D3/LuaSnip',
-  -- 'saadparwaiz1/cmp_luasnip',
 
   'hoob3rt/lualine.nvim',
   'onsails/lspkind-nvim',
@@ -38,20 +26,11 @@ lazy.setup({
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/nvim-cmp',
   'neovim/nvim-lspconfig',
-  -- {
-  --   'nvim-treesitter/nvim-treesitter',
-  --   build = ':TSUpdate'
-  -- },
   'yioneko/nvim-vtsls',
 
   'jose-elias-alvarez/null-ls.nvim',
-  'MunifTanjim/prettier.nvim',
 
   'windwp/nvim-autopairs',
-  -- {
-  --   'windwp/nvim-ts-autotag',
-  --   ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' }
-  -- },
 
   'nvim-lua/plenary.nvim',
   'nvim-telescope/telescope.nvim',
@@ -64,20 +43,10 @@ lazy.setup({
   'dinhhuy258/git.nvim',
 
   'numToStr/Comment.nvim',
-  -- 'JoosepAlviste/nvim-ts-context-commentstring',
 
   'numToStr/FTerm.nvim',
 
   'zbirenbaum/copilot.lua',
-
-  -- {
-  --   'NeogitOrg/neogit',
-  --   dependencies = {
-  --     'nvim-lua/plenary.nvim',
-  --     'sindrets/diffview.nvim',
-  --   },
-  --   config = true
-  -- },
 
   {
     'MeanderingProgrammer/markdown.nvim',
@@ -86,19 +55,15 @@ lazy.setup({
   },
 
   checker = {
-    enabled = true -- automatically check for plugin updates
+    enabled = true
   },
   performance = {
     cache = {
       enabled = true,
-      -- disable_events = {},
     },
     rtp = {
-      -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
-        -- "matchit",
-        -- "matchparen",
         "netrwPlugin",
         "rplugin",
         "tarPlugin",
