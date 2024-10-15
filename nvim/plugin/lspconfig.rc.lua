@@ -29,7 +29,12 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
 nvim_lsp.vtsls.setup {}
---
+nvim_lsp.eslint.setup {
+  settings = {
+    format = false
+  }
+}
+
 -- nvim_lsp.ts_ls.setup {
 --   filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
 --   cmd = { "typescript-language-server", "--stdio" }
@@ -71,6 +76,13 @@ nvim_lsp.csharp_ls.setup {
 -- Rust
 nvim_lsp.rust_analyzer.setup {
   on_attach = on_attach,
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostics = {
+        enable = true,
+      }
+    }
+  },
   cmd = { "rust-analyzer" }
 }
 

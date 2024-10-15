@@ -38,10 +38,10 @@ lazy.setup({
   'hrsh7th/cmp-nvim-lsp',
   'hrsh7th/nvim-cmp',
   'neovim/nvim-lspconfig',
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate'
-  },
+  -- {
+  --   'nvim-treesitter/nvim-treesitter',
+  --   build = ':TSUpdate'
+  -- },
   'yioneko/nvim-vtsls',
 
   'jose-elias-alvarez/null-ls.nvim',
