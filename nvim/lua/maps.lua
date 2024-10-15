@@ -33,8 +33,8 @@ keymap.set('t', 'TT', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', { sil
 
 keymap.set('n', '<C-k>', 'q:i', { silent = true })
 
-keymap.set('n', '<Space>f', ':Esfix<Return>')
-keymap.set('n', '<Space>r', ':Compile<Return>')
+keymap.set('n', '<C-f>', ':Esfix<Return>')
+keymap.set('n', '<C-c>', ':Compile<Return>')
 
 vim.api.nvim_create_user_command('W', 'noa w', { nargs = 0 })
 
