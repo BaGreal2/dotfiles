@@ -48,10 +48,10 @@ lazy.setup({
   'MunifTanjim/prettier.nvim',
 
   'windwp/nvim-autopairs',
-  {
-    'windwp/nvim-ts-autotag',
-    ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' }
-  },
+  -- {
+  --   'windwp/nvim-ts-autotag',
+  --   ft = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' }
+  -- },
 
   'nvim-lua/plenary.nvim',
   'nvim-telescope/telescope.nvim',
