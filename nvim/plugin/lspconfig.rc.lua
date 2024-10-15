@@ -35,11 +35,6 @@ nvim_lsp.eslint.setup {
   }
 }
 
--- nvim_lsp.ts_ls.setup {
---   filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
---   cmd = { "typescript-language-server", "--stdio" }
--- }
-
 -- HTML
 nvim_lsp.html.setup {
   on_attach = on_attach,
@@ -52,9 +47,6 @@ nvim_lsp.html.setup {
 }
 
 -- CSS
--- nvim_lsp.cssmodules_ls.setup {
---   on_attach = on_attach,
--- }
 nvim_lsp.cssls.setup {
   on_attach = on_attach,
   capabilities = capabilities
