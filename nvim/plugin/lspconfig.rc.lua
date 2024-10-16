@@ -2,6 +2,8 @@ local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
 local on_attach = function(client, bufnr)
+  client.server_capabilities.semanticTokensProvider = nil
+
   -- format on save
   if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -13,12 +15,19 @@ local on_attach = function(client, bufnr)
 end
 
 local on_attach_csharp = function(client, bufnr)
+  client.server_capabilities.semanticTokensProvider = nil
+
   -- format on save for csharp (sync, without check)
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = vim.api.nvim_create_augroup("Format", { clear = true }),
     buffer = bufnr,
     callback = function() vim.lsp.buf.format() end
   })
+end
+
+-- disable semantic tokens for typescript
+local on_attach_ts = function(client, bufnr)
+  client.server_capabilities.semanticTokensProvider = nil
 end
 
 --Enable (broadcasting) snippet capability for completion
@@ -28,7 +37,9 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- TypeScript
 require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
-nvim_lsp.vtsls.setup {}
+nvim_lsp.vtsls.setup {
+  on_attach = on_attach_ts,
+}
 nvim_lsp.eslint.setup {
   settings = {
     format = false
