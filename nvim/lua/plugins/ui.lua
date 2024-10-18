@@ -31,7 +31,6 @@ return {
             'encoding',
             'filetype'
           },
-          lualine_y = { 'progress' },
           lualine_z = { 'location' }
         },
         inactive_sections = {
@@ -50,7 +49,6 @@ return {
         extensions = { 'fugitive' }
       }
     end
-
   },
   {
     'akinsho/nvim-bufferline.lua',
@@ -67,21 +65,23 @@ return {
         highlights = {
           separator = {
             fg = '#868A91',
-            bg = '#191C21',
+            bg = '#181818',
           },
           separator_selected = {
             fg = '#ABB2BF',
+            bg = '#181818'
           },
           background = {
             fg = '#868A91',
-            bg = '#191C21'
+            bg = '#181818'
           },
           buffer_selected = {
             fg = '#ffffff',
+            bg = '#161616',
             bold = true
           },
           fill = {
-            bg = '#191C21'
+            bg = '#181818'
           }
         },
       })

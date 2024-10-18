@@ -36,11 +36,13 @@ return {
     end
   },
   {
-    'MeanderingProgrammer/markdown.nvim',
-    main = 'render-markdown',
-    ft = { 'markdown' },
+    "toppair/peek.nvim",
+    event = { "VeryLazy" },
+    build = "deno task --quiet build:fast",
     config = function()
-      require('render-markdown').setup({})
+      require("peek").setup()
+      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
     end,
   },
   {
@@ -48,29 +50,5 @@ return {
     config = function()
       require('colorizer').setup({ '*' })
     end
-  },
-
-  checker = {
-    enabled = true
-  },
-  performance = {
-    cache = {
-      enabled = true,
-    },
-    rtp = {
-      disabled_plugins = {
-        "gzip",
-        "netrwPlugin",
-        "rplugin",
-        "tarPlugin",
-        "tohtml",
-        "2html_plugin",
-        "tutor",
-        "zipPlugin",
-        "logiPat",
-        "spellfile_plugin",
-        "tutor_mode_plugin",
-      },
-    },
   },
 }

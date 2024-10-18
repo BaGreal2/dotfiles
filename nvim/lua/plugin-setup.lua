@@ -14,4 +14,29 @@ vim.opt.rtp:prepend(lazypath)
 local status, lazy = pcall(require, 'lazy')
 if (not status) then return end
 
-lazy.setup('plugins')
+lazy.setup({
+  spec = {
+    { import = "plugins" },
+  },
+
+  change_detection = {
+    notify = false,
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "netrwPlugin",
+        "rplugin",
+        "tarPlugin",
+        "tohtml",
+        "2html_plugin",
+        "tutor",
+        "zipPlugin",
+        "logiPat",
+        "spellfile_plugin",
+        "tutor_mode_plugin",
+      },
+    },
+  },
+})
