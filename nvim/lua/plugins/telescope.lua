@@ -26,6 +26,8 @@ return {
         extensions = {
           file_browser = {
             theme = "dropdown",
+            disable_devicons = true,
+            grouped = true,
             preview = {
               hide_on_startup = true
             },
