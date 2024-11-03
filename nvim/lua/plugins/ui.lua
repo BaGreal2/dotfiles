@@ -21,16 +21,17 @@ return {
             {
               'diagnostics',
               sources = { "nvim_diagnostic" },
-              symbols = {
-                error = ' ',
-                warn = ' ',
-                info = ' ',
-                hint = ' '
-              }
+              -- symbols = {
+              --   error = ' ',
+              --   warn = ' ',
+              --   info = ' ',
+              --   hint = ' '
+              -- }
             },
-            'encoding',
-            'filetype'
+            -- 'encoding',
+            'filetype',
           },
+          lualine_y = {},
           lualine_z = { 'location' }
         },
         inactive_sections = {
