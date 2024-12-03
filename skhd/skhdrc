@@ -23,3 +23,5 @@ ctrl + alt - return : yabai -m window --toggle zoom-fullscreen
 
 alt - f : yabai -m window --toggle float
 
+ctrl + alt - m : source /Users/macbook/Developer/Personal/Python/random-keypress/.venv/bin/activate.fish && python3 /Users/macbook/Developer/Personal/Python/random-keypress/main.py
+ctrl + alt - n : pkill -f "Python"
