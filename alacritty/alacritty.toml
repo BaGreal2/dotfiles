@@ -2,47 +2,51 @@ live_config_reload = true
 # tabspaces = 2
 
 [colors]
-draw_bold_text_with_bright_colors = true
+# draw_bold_text_with_bright_colors = true
+
+[colors.primary]
+background = "#181818"
+foreground = "#cecece"
+
+[colors.cursor]
+text = "#181818"
+cursor = "#cd974b"
+
+[colors.selection]
+background = "#293334" 
+text = "#cecece"
+
+[colors.normal]
+black = "#000000"
+red = "#d2322d"
+green = "#6abf40"
+yellow = "#cd974b"
+blue = "#2384C4"
+magenta = "#9B3596"
+cyan = "#178F79"
+white = "#cecece"
 
 [colors.bright]
-black = "0x6e6a86"
-blue = "0x9ccfd8"
-cyan = "0xebbcba"
-green = "0x31748f"
-magenta = "0xc4a7e7"
-red = "0xeb6f92"
-white = "0xe0def4"
-yellow = "0xf6c177"
+black = "#333333"
+red = "#c33c33"
+green = "#95cb82"
+yellow = "#dfdf8e"
+blue = "#71aed7"
+magenta = "#cc8bc9"
+cyan = "#47BEA9"
+white = "#ffffff"
 
-[colors.hints.end]
-background = "#1f1d2e"
-foreground = "#6e6a86"
-
-[colors.hints.start]
-background = "#1f1d2e"
-foreground = "#908caa"
+# [colors.hints.end]
+# background = "#1f1d2e"
+# foreground = "#6e6a86"
+#
+# [colors.hints.start]
+# background = "#1f1d2e"
+# foreground = "#908caa"
 
 [colors.line_indicator]
 background = "None"
 foreground = "None"
-
-[colors.normal]
-black = "0x26233a"
-blue = "0x9ccfd8"
-cyan = "0xebbcba"
-green = "0x31748f"
-magenta = "0xc4a7e7"
-red = "0xeb6f92"
-white = "0xe0def4"
-yellow = "0xf6c177"
-
-[colors.primary]
-background = "0x191724"
-foreground = "0xe0def4"
-
-[colors.selection]
-background = "0x403d52"
-text = "0xe0def4"
 
 [cursor]
 style = "Block"
