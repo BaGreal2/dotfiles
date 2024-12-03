@@ -80,6 +80,8 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     dependencies = { 'yioneko/nvim-vtsls' },
     config = function()
       local on_attach = function(client, bufnr)
@@ -107,7 +109,7 @@ return {
       end
 
       -- disable semantic tokens for typescript
-      local on_attach_ts = function(client, bufnr)
+      local on_attach_no_highlight = function(client, bufnr)
         client.server_capabilities.semanticTokensProvider = nil
       end
 
@@ -119,7 +121,7 @@ return {
       require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
       require('lspconfig').vtsls.setup {
-        on_attach = on_attach_ts,
+        on_attach = on_attach_no_highlight,
       }
       require('lspconfig').eslint.setup {
         settings = {
@@ -129,7 +131,7 @@ return {
 
       -- HTML
       require('lspconfig').html.setup {
-        on_attach = on_attach,
+        on_attach = on_attach_no_highlight,
         embeddedLanguages = {
           css = true,
           javascript = false
@@ -140,14 +142,14 @@ return {
 
       -- CSS
       require('lspconfig').cssls.setup {
-        on_attach = on_attach,
+        on_attach = on_attach_no_highlight,
         capabilities = capabilities
       }
       require('lspconfig').tailwindcss.setup {}
 
       -- C++
       require('lspconfig').clangd.setup {
-        on_attach = on_attach,
+        on_attach = on_attach_no_highlight,
         filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
         cmd = { "clangd", "--offset-encoding=utf-16" }
       }
@@ -159,7 +161,7 @@ return {
 
       -- Rust
       require('lspconfig').rust_analyzer.setup {
-        on_attach = on_attach,
+        on_attach = on_attach_no_highlight,
         settings = {
           ['rust-analyzer'] = {
             diagnostics = {
@@ -202,4 +204,9 @@ return {
       }
     end
   },
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  --   opts = {},
+  -- }
 }

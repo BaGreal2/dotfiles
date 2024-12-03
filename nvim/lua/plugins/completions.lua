@@ -45,51 +45,18 @@ return {
       ]]
     end,
   },
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    event = 'BufReadPre',
-    config = function()
-      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-      local lsp_formatting = function(bufnr)
-        vim.lsp.buf.format({
-          filter = function(client)
-            return client.name == "null-ls"
-          end,
-          bufnr = bufnr,
-        })
-      end
-
-      require('null-ls').setup({
-        sources = {
-          require('null-ls').builtins.formatting.prettierd,
-          require('null-ls').builtins.diagnostics.fish
-        },
-
-        -- For formatting ts/js based on eslint/prettier
-        on_attach = function(client, bufnr)
-          if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              group = augroup,
-              buffer = bufnr,
-              callback = function()
-                lsp_formatting(bufnr)
-              end,
-            })
-          end
-        end
-      })
-
-      vim.api.nvim_create_user_command(
-        'DisableLspFormatting',
-        function()
-          vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
-        end,
-        { nargs = 0 }
-      )
-    end,
-  },
+  -- {
+  --   'jose-elias-alvarez/null-ls.nvim',
+  --   event = 'BufReadPre',
+  --   config = function()
+  --     require('null-ls').setup({
+  --       sources = {
+  --         -- require('null-ls').builtins.formatting.prettierd,
+  --         -- require('null-ls').builtins.diagnostics.fish
+  --       }
+  --     })
+  --   end,
+  -- },
   {
     'numToStr/Comment.nvim',
     config = function()
