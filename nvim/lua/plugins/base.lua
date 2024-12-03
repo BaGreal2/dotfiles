@@ -47,6 +47,7 @@ return {
   },
   {
     'norcalli/nvim-colorizer.lua',
+    ft = { 'html', 'css', 'scss', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
     config = function()
       require('colorizer').setup({ '*' })
     end
