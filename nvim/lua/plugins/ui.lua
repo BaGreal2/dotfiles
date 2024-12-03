@@ -1,6 +1,7 @@
 return {
   {
     'hoob3rt/lualine.nvim',
+    event = 'BufEnter',
     config = function()
       require('lualine').setup {
         options = {
@@ -53,6 +54,7 @@ return {
   },
   {
     'akinsho/nvim-bufferline.lua',
+    event = 'BufEnter',
     config = function()
       require('bufferline').setup({
         options = {
@@ -87,8 +89,8 @@ return {
         },
       })
 
-      vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', {})
-      vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', {})
+      vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCycleNext<CR>', {})
+      -- vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', {})
     end
   }
 }
