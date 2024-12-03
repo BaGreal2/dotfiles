@@ -35,11 +35,11 @@ end
 #   "
 
 set -Ux FZF_DEFAULT_OPTS "
-    --color=fg:#908caa,bg:,hl:#ebbcba
-    --color=fg+:#e0def4,bg+:,hl+:#ebbcba
-    --color=border:#403d52,header:#31748f,gutter:#191724
-    --color=spinner:#f6c177,info:#9ccfd8,separator:#403d52
-    --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa
+    --color=fg:#cecece,bg:#181818,hl:#d2322d
+    --color=fg+:#cecece,bg+:#293334,hl+:#95cb82
+    --color=border:#333333,header:#2384C4,gutter:#181818
+    --color=spinner:#cd974b,info:#9ccfd8,separator:#333333
+    --color=pointer:#dfdf8e,marker:#9B3596,prompt:#cecece
   "
 
 
@@ -63,6 +63,18 @@ set -Ux FZF_CTRL_T_OPTS "
 
 function vm
   vim $(fzf -m --preview="bat --color=always {}")
+end
+
+function mem
+    if test (count $argv) -eq 0
+        echo "Usage: mem <Program name>"
+        return 1
+    end
+
+    set program $argv[1]
+
+    # Sum memory for all processes with the program name in their command path
+    ps -ax -o rss,comm | grep -i "$program" | awk '{sum += $1} END {print sum/1024 " MB"}'
 end
 
 # FZF END
