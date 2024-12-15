@@ -12,7 +12,7 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=25 blur_radius=30 color=0x40000000
+sketchybar --bar position=top height=37 blur_radius=30 color=0x40000000
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
@@ -22,7 +22,7 @@ sketchybar --bar position=top height=25 blur_radius=30 color=0x40000000
 default=(
   padding_left=0
   padding_right=0
-  icon.font="SF Pro:Bold:15.0"
+  icon.font="SF Pro:Bold:17.0"
   label.font="SF Pro:Bold:14.0"
   icon.color=0xffffffff
   label.color=0xffffffff
@@ -47,11 +47,11 @@ do
     icon="${SPACE_ICONS[i]}"
     padding_left=3
     padding_right=3
-    icon.padding_left=7
-    icon.padding_right=7
+    icon.padding_left=10
+    icon.padding_right=13
     background.color=0x40ffffff
     background.corner_radius=5
-    background.height=23
+    background.height=30
     label.drawing=off
     script="$PLUGIN_DIR/space.sh"
     click_script="yabai -m space --focus $sid"
