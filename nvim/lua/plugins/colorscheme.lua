@@ -35,8 +35,8 @@ return {
       -- Diagnostcs
       vim.api.nvim_set_hl(0, 'DiagnosticSignError', { bg = '', fg = "#e82424" })
       vim.api.nvim_set_hl(0, 'DiagnosticSignWarn', { bg = '', fg = '#ff9d3c' })
+      vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { bg = '', fg = '#6a9588' })
       -- vim.api.nvim_set_hl(0, 'DiagnosticSignInfo', { bg = '' })
-      -- vim.api.nvim_set_hl(0, 'DiagnosticSignHint', { bg = '' })
 
       -- Line numbers
       vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#54546d', bg = '' })
