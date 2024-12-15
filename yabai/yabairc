@@ -3,7 +3,7 @@ sudo yabai --load-sa
 
 yabai -m config layout bsp
 
-yabai -m config external_bar all:25:0
+yabai -m config external_bar all:37:0
 
 yabai -m config window_shadow float
 
