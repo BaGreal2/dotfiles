@@ -155,6 +155,19 @@
                             "to": [{ "key_code": "right_command" }]
                         }
                     ]
+                },
+                {
+                    "identifiers": { "is_keyboard": true },
+                    "simple_modifications": [
+                        {
+                            "from": { "key_code": "f5" },
+                            "to": [{ "apple_vendor_top_case_key_code": "illumination_down" }]
+                        },
+                        {
+                            "from": { "key_code": "f6" },
+                            "to": [{ "apple_vendor_top_case_key_code": "illumination_up" }]
+                        }
+                    ]
                 }
             ],
             "fn_function_keys": [
