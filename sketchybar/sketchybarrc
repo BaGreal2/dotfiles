@@ -12,7 +12,7 @@ PLUGIN_DIR="$CONFIG_DIR/plugins"
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=37 blur_radius=30 color=0x40000000
+sketchybar --bar position=top height=37 blur_radius=30 color=0x40000000 padding_left=12 padding_right=15
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
@@ -22,8 +22,8 @@ sketchybar --bar position=top height=37 blur_radius=30 color=0x40000000
 default=(
   padding_left=0
   padding_right=0
-  icon.font="SF Pro:Bold:17.0"
-  label.font="SF Pro:Bold:14.0"
+  icon.font="SF Pro:Bold:16.0"
+  label.font="SF Pro:Medium:13.5"
   icon.color=0xffffffff
   label.color=0xffffffff
   icon.padding_left=4
@@ -51,7 +51,7 @@ do
     icon.padding_right=13
     background.color=0x40ffffff
     background.corner_radius=5
-    background.height=30
+    background.height=28
     label.drawing=off
     script="$PLUGIN_DIR/space.sh"
     click_script="yabai -m space --focus $sid"
@@ -66,7 +66,7 @@ done
 sketchybar --add item chevron left \
            --set chevron icon=􀆊 label.drawing=off \
            --add item front_app left \
-           --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" \
+           --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" label.font="SF Pro:Bold:14.0" padding_left=4 \
            --subscribe front_app front_app_switched
 
 ##### Adding Right Items #####
@@ -83,7 +83,7 @@ sketchybar --add item chevron left \
 sketchybar --add item clock right \
            --set clock update_freq=10 script="$PLUGIN_DIR/clock.sh" \
            --add item battery right \
-           --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+           --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" icon.font="SF Pro:Regular:17.0" \
            --subscribe battery system_woke power_source_change
 
 ##### Force all scripts to run the first time (never do this in a script) #####
