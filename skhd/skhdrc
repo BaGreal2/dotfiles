@@ -8,20 +8,29 @@ ctrl - 7 : yabai -m space --focus 7
 ctrl - 8 : yabai -m space --focus 8
 ctrl - 9 : yabai -m space --focus 9
 
-ctrl - h : yabai -m window --focus west
-ctrl - j : yabai -m window --focus south
-ctrl - k : yabai -m window --focus north
-ctrl - l : yabai -m window --focus east
+# ctrl - h : yabai -m window --focus west
+# ctrl - j : yabai -m window --focus south
+# ctrl - k : yabai -m window --focus north
+# ctrl - l : yabai -m window --focus east
 
-ctrl + alt - h : yabai -m window --swap west
-ctrl + alt - j : yabai -m window --swap south
-ctrl + alt - k : yabai -m window --swap north
-ctrl + alt - l : yabai -m window --swap east
+# ctrl + alt - h : yabai -m window --swap west
+# ctrl + alt - j : yabai -m window --swap south
+# ctrl + alt - k : yabai -m window --swap north
+# ctrl + alt - l : yabai -m window --swap east
 
-alt - return        : yabai -m window --toggle split
-ctrl + alt - return : yabai -m window --toggle zoom-fullscreen
+# alt - return        : yabai -m window --toggle split
+# ctrl + alt - return : yabai -m window --toggle zoom-fullscreen
 
-alt - f : yabai -m window --toggle float
+# alt - f : yabai -m window --toggle float
+
+# floating experiment
+ctrl + alt - return : yabai -m window --grid 1:1:0:0:1:1
+ctrl + alt - h : yabai -m window --grid 2:2:0:0:1:2
+ctrl + alt - l : yabai -m window --grid 2:2:1:0:1:2
+ctrl + alt - j : yabai -m window --grid 2:2:0:1:2:1
+ctrl + alt - k : yabai -m window --grid 2:2:0:0:2:1
 
 ctrl + alt - m : source /Users/xanin/Developer/personal/random-keypress/.venv/bin/activate.fish && python3 /Users/xanin/Developer/personal/random-keypress/main.py
 ctrl + alt - n : pkill -f "Python"
+
+cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
