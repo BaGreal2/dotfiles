@@ -5,6 +5,8 @@ end
 alias vim=nvim
 alias ls="lsd --group-dirs first"
 # fish_vi_key_bindings
+# bind -M insert \ce accept-autosuggestion
+fish_hybrid_key_bindings
 
 # PNPM START
 set -gx PNPM_HOME "/Users/macbook/Library/pnpm"
