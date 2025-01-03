@@ -104,3 +104,6 @@ set fish_greeting ""
 
 zoxide init fish | source
 
+
+# Created by `pipx` on 2025-01-02 00:32:07
+set PATH $PATH /Users/xanin/.local/bin
