@@ -5,6 +5,8 @@ end
 alias vim=nvim
 alias ls="lsd --group-dirs first"
 # fish_vi_key_bindings
+# bind -M insert \ce accept-autosuggestion
+fish_hybrid_key_bindings
 
 # PNPM START
 set -gx PNPM_HOME "/Users/macbook/Library/pnpm"
@@ -102,3 +104,6 @@ set fish_greeting ""
 
 zoxide init fish | source
 
+
+# Created by `pipx` on 2025-01-02 00:32:07
+set PATH $PATH /Users/xanin/.local/bin
