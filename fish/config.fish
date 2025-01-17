@@ -1,12 +1,9 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-end
-
 alias vim=nvim
 alias ls="lsd --group-dirs first"
 # fish_vi_key_bindings
 # bind -M insert \ce accept-autosuggestion
-fish_hybrid_key_bindings
+# fish_hybrid_key_bindings
+set fish_prompt_pwd_dir_length 3
 
 # PNPM START
 set -gx PNPM_HOME "/Users/macbook/Library/pnpm"
@@ -16,26 +13,6 @@ end
 # PNPM END
 
 # FZF START
-
-# function fzf --wraps="fzf"
-# set -Ux FZF_DEFAULT_OPTS "
-#     --color=fg:#908caa,bg:#191724,hl:#ebbcba
-#     --color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
-#     --color=border:#403d52,header:#31748f,gutter:#191724
-#     --color=spinner:#f6c177,info:#9ccfd8,separator:#403d52
-#     --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa
-#   "
-#     command fzf
-# end
-
-# set -Ux FZF_DEFAULT_OPTS "
-#     --color=fg:#908caa,bg:#191724,hl:#ebbcba
-#     --color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
-#     --color=border:#403d52,header:#31748f,gutter:#191724
-#     --color=spinner:#f6c177,info:#9ccfd8,separator:#403d52
-#     --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa
-#   "
-
 set -Ux FZF_DEFAULT_OPTS "
     --color=fg:#cecece,bg:#181818,hl:#d2322d
     --color=fg+:#cecece,bg+:#293334,hl+:#95cb82
@@ -66,6 +43,7 @@ set -Ux FZF_CTRL_T_OPTS "
 function vm
   vim $(fzf -m --preview="bat --color=always {}")
 end
+# FZF END
 
 function mem
     if test (count $argv) -eq 0
@@ -79,12 +57,8 @@ function mem
     ps -ax -o rss,comm | grep -i "$program" | awk '{sum += $1} END {print sum/1024 " MB"}'
 end
 
-# FZF END
-
 # set --export PATH /usr/local/opt/llvm/bin $PATH
 set --export LDFLAGS -L/usr/local/opt/llvm/lib
-
-# set --export PATH $HOME/.cargo/bin $PATH
 
 set --export PATH $HOME/.dotnet/tools $PATH
 
