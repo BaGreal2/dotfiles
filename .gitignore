@@ -3,6 +3,7 @@
 fish/functions/
 fish/completions/
 fish/conf.d/
+fish/fish_variables
 
 nvim/.luarc.json
 nvim/lazy-lock.json
