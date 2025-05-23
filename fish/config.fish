@@ -64,10 +64,49 @@ set --export PATH $HOME/.dotnet/tools $PATH
 
 set --export PATH $HOME/.cargo/bin $PATH
 
-set --export NODE_OPTIONS "--max-old-space-size=16384"
-set --export TSC_NONPOLLING_WATCHER true
+set --export PATH $HOME/go/bin $PATH
+
+# set --export NODE_OPTIONS "--max-old-space-size=16384"
+# set --export TSC_NONPOLLING_WATCHER true
 
 set -Ux BAT_THEME Nord
+
+function yt-search
+  set input (echo | fzf --print-query --prompt='YouTube Search: ' --no-select-1 --no-sort)
+  if test -z "$input"
+    echo "No query entered"
+    return 1
+  end
+
+  set words (string split ' ' -- $input)
+  set last $words[-1]
+
+  if string match -qr '^\d+$' -- $last
+    set count $last
+    set query $words[1..-2]
+  else
+    set count 20
+    set query $words
+  end
+
+  set query_str (string join ' ' $query)
+
+  # Call our custom Node.js ytsearch script
+  set selected (~/scripts/fetch-yt.js "$query_str" $count \
+    | fzf --prompt='Pick video: ' --ansi --sync \
+      --preview='
+        set video_id (echo {} | awk -F "\t" "{print \$3}")
+        kitty icat --clear --transfer-mode=memory --stdin=no --place={$FZF_PREVIEW_COLUMNS}x{$FZF_PREVIEW_LINES}@0x0 https://img.youtube.com/vi/$video_id/hqdefault.jpg
+      ')
+
+  if test -n "$selected"
+    set video_id (echo $selected | awk -F '\t' '{print $3}')
+    set url "https://youtube.com/watch?v=$video_id"
+    iina $url
+  end
+end
+
+bind \cy "~/scripts/yt-search.sh"
 
 set --export LC_ALL en_US.UTF-8  
 set --export LANG en_US.UTF-8
@@ -77,7 +116,3 @@ set -gx $EDITOR "nvim"
 set fish_greeting ""
 
 zoxide init fish | source
-
-
-# Created by `pipx` on 2025-01-02 00:32:07
-set PATH $PATH /Users/xanin/.local/bin
