@@ -1,4 +1,4 @@
-vim.cmd('autocmd!')
+-- vim.cmd('autocmd!')
 
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
@@ -33,7 +33,7 @@ vim.opt.wrap = false
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.backspace = 'start,eol,indent'
-vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
+vim.opt.path:append { '**' }
 vim.opt.wildignore:append {
   '*/node_modules/*',
   '*/.git/*',
