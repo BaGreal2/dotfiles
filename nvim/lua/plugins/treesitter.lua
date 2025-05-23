@@ -14,7 +14,7 @@ return {
       require('nvim-treesitter.configs').setup({
         ensure_installed = { "c", "cpp", "lua", "python", "rust", "typescript", "javascript", "tsx", "html", "css", "diff", "markdown", "markdown_inline", "luadoc" },
         highlight = {
-          enable = false,
+          enable = true,
         },
       })
 
