@@ -2,7 +2,10 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     cmd = "Telescope",
-    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-file-browser.nvim' },
+    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-file-browser.nvim', {
+      "nvim-telescope/telescope-live-grep-args.nvim",
+      version = "^1.0.0",
+    } },
     keys = {
       {
         "sf",
@@ -40,10 +43,17 @@ return {
         end,
         mode = { "n" }
       },
+      -- {
+      --   ";r",
+      --   function()
+      --     require("telescope.builtin").live_grep()
+      --   end,
+      --   mode = { "n" }
+      -- },
       {
         ";r",
         function()
-          require("telescope.builtin").live_grep()
+          require('telescope').extensions.live_grep_args.live_grep_args()
         end,
         mode = { "n" }
       },
@@ -130,6 +140,7 @@ return {
         },
       }
 
+      require('telescope').load_extension("live_grep_args")
       require('telescope').load_extension("file_browser")
     end
   }
