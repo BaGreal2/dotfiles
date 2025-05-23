@@ -6,7 +6,7 @@ return {
     {
       "<leader>ff",
       function()
-        require("conform").format()
+        require("conform").format({ lsp_fallback = true })
       end,
       mode = { "x", "n", "v" },
     },
@@ -24,17 +24,10 @@ return {
       ["html"] = { "prettierd" },
       ["rust"] = { "rustfmt" },
       ["c"] = { "clang-format" },
-      ["cpp"] = { "clang-format" }
+      ["cpp"] = { "clang-format" },
+      ["go"] = { "gofmt" },
+      ["python"] = { "black" },
+      ["php"] = { "php_cs_fixer" },
     },
-    format = {
-      timeout_ms = 3000,
-      async = true,
-      quiet = false,
-      lsp_fallback = true,
-    },
-    -- format_on_save = {
-    --   timeout_ms = 3000,
-    --   lsp_fallback = true,
-    -- }
   },
 }

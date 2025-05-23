@@ -28,18 +28,6 @@ return {
           layout = 'float'
         }
       })
-
-      local opts = { noremap = true, silent = true }
-      vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', opts)
-      vim.keymap.set('n', '<C-[>', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
-      vim.keymap.set('n', '<C-]>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
-      vim.keymap.set('n', 'gd', '<Cmd>Lspsaga finder<CR>', opts)
-      vim.keymap.set('n', 'gl', '<Cmd>lua vim.diagnostic.open_float(0, { scope="line"})<CR>', opts)
-      vim.keymap.set('n', 'gp', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-      vim.keymap.set('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
-
-      -- code action
-      vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
     end
   },
   {
@@ -84,7 +72,20 @@ return {
     cmd = { "LspInfo", "LspInstall", "LspUninstall" },
     dependencies = { 'yioneko/nvim-vtsls' },
     config = function()
+      local on_attach_maps = function(bufnr)
+        local opts = { noremap = true, silent = true, buffer = bufnr }
+        vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', opts)
+        vim.keymap.set('n', '<C-[>', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
+        vim.keymap.set('n', '<C-]>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
+        vim.keymap.set('n', 'gd', '<Cmd>Lspsaga finder<CR>', opts)
+        vim.keymap.set('n', 'gl', '<Cmd>lua vim.diagnostic.open_float(0, { scope="line"})<CR>', opts)
+        vim.keymap.set('n', 'gp', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        vim.keymap.set('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
+      vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+      end
+
       local on_attach = function(client, bufnr)
+        on_attach_maps(bufnr)
         client.server_capabilities.semanticTokensProvider = nil
 
         -- format on save
@@ -98,6 +99,7 @@ return {
       end
 
       local on_attach_csharp = function(client, bufnr)
+        on_attach_maps(bufnr)
         client.server_capabilities.semanticTokensProvider = nil
 
         -- format on save for csharp (sync, without check)
@@ -110,6 +112,7 @@ return {
 
       -- disable semantic tokens for typescript
       local on_attach_no_highlight = function(client, bufnr)
+        on_attach_maps(bufnr)
         client.server_capabilities.semanticTokensProvider = nil
       end
 
@@ -172,14 +175,18 @@ return {
         cmd = { "rust-analyzer" }
       }
 
+      require('lspconfig').gopls.setup {
+        on_attach = on_attach_no_highlight,
+      }
+
       -- Python
       require('lspconfig').pyright.setup {
-        on_attach = on_attach,
+        on_attach = on_attach_no_highlight,
       }
 
       -- LUA
       require('lspconfig').lua_ls.setup {
-        on_attach = on_attach,
+        on_attach = on_attach_no_highlight,
         settings = {
           Lua = {
             diagnostics = {
@@ -193,14 +200,18 @@ return {
         }
       }
 
+      require('lspconfig').phpactor.setup {
+        on_attach = on_attach_no_highlight,
+      }
+
       -- SQL
       require('lspconfig').sqlls.setup {
-        on_attach = on_attach,
+        on_attach = on_attach_no_highlight,
       }
 
       -- Markdown
       require('lspconfig').marksman.setup {
-        on_attach = on_attach
+        on_attach = on_attach_no_highlight,
       }
     end
   },
