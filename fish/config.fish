@@ -91,8 +91,7 @@ function yt-search
 
   set query_str (string join ' ' $query)
 
-  # Call our custom Node.js ytsearch script
-  set selected (~/scripts/fetch-yt.js "$query_str" $count \
+  set selected (~/.scripts/fetch-yt.js "$query_str" $count \
     | fzf --prompt='Pick video: ' --ansi --sync \
       --preview='
         set video_id (echo {} | awk -F "\t" "{print \$3}")
@@ -102,16 +101,17 @@ function yt-search
   if test -n "$selected"
     set video_id (echo $selected | awk -F '\t' '{print $3}')
     set url "https://youtube.com/watch?v=$video_id"
-    iina $url
+    iina $url --mpv-fs
   end
 end
 
-bind \cy "~/scripts/yt-search.sh"
+bind \cy "~/.scripts/yt-search.sh"
 
 set --export LC_ALL en_US.UTF-8  
 set --export LANG en_US.UTF-8
 
-set -gx $EDITOR "nvim"
+set --export EDITOR "nvim"
+set --export VISUAL "nvim"
 
 set fish_greeting ""
 
