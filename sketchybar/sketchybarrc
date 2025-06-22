@@ -77,7 +77,7 @@ sketchybar --add item user left \
 
 sketchybar --add item weather left \
            --set weather \
-           icon=􀆬  icon.padding_left=6 \
+           icon=􀅍 icon.padding_left=6 \
            script="$PLUGIN_DIR/weather.sh" \
            update_freq=1500 \
            --subscribe weather mouse.clicked
