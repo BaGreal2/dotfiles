@@ -113,6 +113,8 @@ set --export LANG en_US.UTF-8
 set --export EDITOR "nvim"
 set --export VISUAL "nvim"
 
+set -gx PATH $HOME/.scripts $PATH
+
 set fish_greeting ""
 
 zoxide init fish | source
