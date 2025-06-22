@@ -12,14 +12,14 @@ return {
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     config = function()
       require('nvim-treesitter.configs').setup({
-        ensure_installed = { "c", "cpp", "lua", "python", "rust", "typescript", "javascript", "tsx", "html", "css", "diff", "markdown", "markdown_inline", "luadoc" },
+        ensure_installed = { "c", "cpp", "lua", "python", "rust", "typescript", "javascript", "tsx", "html", "css", "diff", "markdown", "markdown_inline", "luadoc", "xml" },
         highlight = {
           enable = true,
         },
       })
 
-      local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-      parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
+      vim.treesitter.language.register('xml', 'axaml')
+      -- vim.treesitter.language.register('tsx', 'javascript')
     end,
   },
 }

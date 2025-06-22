@@ -28,6 +28,7 @@ return {
       ["go"] = { "gofmt" },
       ["python"] = { "black" },
       ["php"] = { "php_cs_fixer" },
+      ["axaml"] = { "xmllint" },
     },
   },
 }

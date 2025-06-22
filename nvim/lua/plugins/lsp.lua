@@ -81,22 +81,22 @@ return {
         vim.keymap.set('n', 'gl', '<Cmd>lua vim.diagnostic.open_float(0, { scope="line"})<CR>', opts)
         vim.keymap.set('n', 'gp', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
         vim.keymap.set('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
-      vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+        vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
       end
 
-      local on_attach = function(client, bufnr)
-        on_attach_maps(bufnr)
-        client.server_capabilities.semanticTokensProvider = nil
-
-        -- format on save
-        if client.server_capabilities.documentFormattingProvider then
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            group = vim.api.nvim_create_augroup("Format", { clear = true }),
-            buffer = bufnr,
-            callback = function() vim.lsp.buf.format() end
-          })
-        end
-      end
+      -- local on_attach = function(client, bufnr)
+      --   on_attach_maps(bufnr)
+      --   client.server_capabilities.semanticTokensProvider = nil
+      --
+      --   -- format on save
+      --   if client.server_capabilities.documentFormattingProvider then
+      --     vim.api.nvim_create_autocmd("BufWritePre", {
+      --       group = vim.api.nvim_create_augroup("Format", { clear = true }),
+      --       buffer = bufnr,
+      --       callback = function() vim.lsp.buf.format() end
+      --     })
+      --   end
+      -- end
 
       local on_attach_csharp = function(client, bufnr)
         on_attach_maps(bufnr)
@@ -159,7 +159,7 @@ return {
 
       -- C#
       require('lspconfig').csharp_ls.setup {
-        on_attach = on_attach_csharp,
+        on_attach = on_attach_no_highlight,
       }
 
       -- Rust
