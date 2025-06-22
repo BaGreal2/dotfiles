@@ -15,3 +15,7 @@ tmux/plugins
 iterm2/
 
 karabiner/automatic_backups/
+
+newsboat/cache.db
+newsboat/history.cmdline
+newsboat/history.search
