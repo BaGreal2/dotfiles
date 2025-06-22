@@ -1,0 +1,14 @@
+"---GUYS---" "ignore-mode"
+https://miliukhin.xyz/index.xml
+https://lukesmith.xyz/index.xml
+
+"---YOUTUBE---" "ignore-mode"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCrqM0Ym_NbK1fqeQG2VIohg
+https://www.youtube.com/feeds/videos.xml?channel_id=UCzIbo5FwGIMFkSW1QEZmbsw
+
+"---JOBS---" "ignore-mode"
+https://djinni.co/jobs/rss/?primary_keyword=React.js&primary_keyword=JavaScript&exp_level=1y&exp_level=2y&page=2
+
+"---BLOAT---" "ignore-mode"
+https://dev-drupal-test-web.pantheonsite.io/articles.xml
+https://cmus.cloudaccess.host/index.php/articles?format=feed&type=atom
