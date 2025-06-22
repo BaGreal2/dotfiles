@@ -1,0 +1,12 @@
+# Always extract audio
+-x
+
+# Save all videos under YouTube directory in your home directory
+-o ~/Documents/Music/xanin/tmp/%(title)s.%(ext)s
+
+# format
+--audio-format mp3
+
+# Add artist to metadata(cmus hack)
+--add-metadata
+--parse-metadata "artist:%(artist>%uploader)s"
