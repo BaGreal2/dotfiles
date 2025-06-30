@@ -10,7 +10,7 @@ color title              magenta    black      bold
 
 auto-reload yes
 
-browser "/Users/xanin/.newsboat/open.sh"
+browser "/Users/xanin/.config/newsboat/open.sh"
 
 bind-key j down
 bind-key k up
