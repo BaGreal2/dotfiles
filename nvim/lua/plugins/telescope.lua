@@ -2,6 +2,11 @@ return {
   {
     'nvim-telescope/telescope.nvim',
     cmd = "Telescope",
+    init = function()
+      if vim.fn.argc() > 0 and vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
+        require("lazy").load({ plugins = { "telescope.nvim" } })
+      end
+    end,
     dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-file-browser.nvim', {
       "nvim-telescope/telescope-live-grep-args.nvim",
       version = "^1.0.0",
@@ -104,7 +109,7 @@ return {
               ["d"] = actions.delete_buffer,
             },
           },
-          file_ignore_patterns = { "node%_modules/.*", ".DS_Store", ".git/*", "coverage/.*" }
+          file_ignore_patterns = { "node%_modules/.*", ".DS_Store", ".git/*", "coverage/.*", "dist/", "build/", ".next/" }
         },
         extensions = {
           file_browser = {
@@ -116,6 +121,7 @@ return {
             },
             -- disables netrw and use telescope-file-browser in its place
             hijack_netrw = true,
+            initial_mode="normal",
             layout_config = {
               height = 40,
               width = 0.5
