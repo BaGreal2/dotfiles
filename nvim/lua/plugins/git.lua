@@ -8,6 +8,7 @@ return {
   },
   {
     'dinhhuy258/git.nvim',
+    enabled = false,
     config = function()
       require('git').setup({
         keymaps = {
@@ -15,5 +16,18 @@ return {
         }
       })
     end
-  }
+  },
+  {
+    'tpope/vim-fugitive',
+    cmd = {
+      'Git', 'G',
+      'Gdiffsplit', 'Gvdiffsplit',
+      'Gread', 'Gwrite'
+    },
+    keys = {
+      { '<leader>gm',  ':Gdiffsplit!<CR>' },
+      { '<leader>gh2', ':diffget //2<CR>' },
+      { '<leader>gh3', ':diffget //3<CR>' },
+    },
+  },
 }
