@@ -75,8 +75,8 @@ return {
       local on_attach_maps = function(bufnr)
         local opts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', opts)
-        vim.keymap.set('n', '<C-[>', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
-        vim.keymap.set('n', '<C-]>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
+        vim.keymap.set('n', '<A-[>', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
+        vim.keymap.set('n', '<A-]>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
         vim.keymap.set('n', 'gd', '<Cmd>Lspsaga finder<CR>', opts)
         vim.keymap.set('n', 'gl', '<Cmd>lua vim.diagnostic.open_float(0, { scope="line"})<CR>', opts)
         vim.keymap.set('n', 'gp', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
@@ -210,9 +210,9 @@ return {
       }
 
       -- Markdown
-      require('lspconfig').marksman.setup {
-        on_attach = on_attach_no_highlight,
-      }
+      -- require('lspconfig').marksman.setup {
+      --   on_attach = on_attach_no_highlight,
+      -- }
     end
   },
   -- {
