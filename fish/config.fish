@@ -1,49 +1,38 @@
 alias vim=nvim
 alias ls="lsd --group-dirs first"
-# fish_vi_key_bindings
-# bind -M insert \ce accept-autosuggestion
-# fish_hybrid_key_bindings
+alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
+alias qview="open -a qView"
 set fish_prompt_pwd_dir_length 3
 
-# PNPM START
+# -- vi mode
+fish_hybrid_key_bindings
+function fish_mode_prompt
+end
+bind yy fish_clipboard_copy
+bind Y fish_clipboard_copy
+bind p fish_clipboard_paste
+
+# -- pnpm
 set -gx PNPM_HOME "/Users/macbook/Library/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
-# PNPM END
 
-# FZF START
+# -- fzf
 set -Ux FZF_DEFAULT_OPTS "
-    --color=fg:#cecece,bg:#181818,hl:#d2322d
-    --color=fg+:#cecece,bg+:#293334,hl+:#95cb82
+    --color=fg:#cecece,bg:-1,hl:#d2322d
+    --color=fg+:#cecece,bg+:-1,hl+:#95cb82
     --color=border:#333333,header:#2384C4,gutter:#181818
     --color=spinner:#cd974b,info:#9ccfd8,separator:#333333
     --color=pointer:#dfdf8e,marker:#9B3596,prompt:#cecece
   "
 
+fzf_configure_bindings --directory=\ct
 
-# set fzf_directory_opts --bind "ctrl-o:execute($EDITOR {} &> /dev/tty)"
-# fzf_configure_bindings --directory=\cf --history=\cy
-# alias vm="vim $(fzf)"
-# bind \cf "vim $(fzf)"
-
-set -Ux FZF_ALT_C_OPTS "--preview 'tree -C {}'"
-
-set -Ux FZF_CTRL_R_OPTS "
-  --preview 'echo {}' --preview-window up:3:hidden:wrap
-  --bind 'ctrl-/:toggle-preview'
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
-  --color header:italic
-  --header 'Press CTRL-Y to copy command into clipboard'"
-
-set -Ux FZF_CTRL_T_OPTS "
-  --preview 'bat -n --color=always {}'
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
-
+# -- custom bindings
 function vm
   vim $(fzf -m --preview="bat --color=always {}")
 end
-# FZF END
 
 function mem
     if test (count $argv) -eq 0
@@ -53,23 +42,8 @@ function mem
 
     set program $argv[1]
 
-    # Sum memory for all processes with the program name in their command path
     ps -ax -o rss,comm | grep -i "$program" | awk '{sum += $1} END {print sum/1024 " MB"}'
 end
-
-# set --export PATH /usr/local/opt/llvm/bin $PATH
-set --export LDFLAGS -L/usr/local/opt/llvm/lib
-
-set --export PATH $HOME/.dotnet/tools $PATH
-
-set --export PATH $HOME/.cargo/bin $PATH
-
-set --export PATH $HOME/go/bin $PATH
-
-# set --export NODE_OPTIONS "--max-old-space-size=16384"
-# set --export TSC_NONPOLLING_WATCHER true
-
-set -Ux BAT_THEME Nord
 
 function yt-search
   set input (echo | fzf --print-query --prompt='YouTube Search: ' --no-select-1 --no-sort)
@@ -91,7 +65,7 @@ function yt-search
 
   set query_str (string join ' ' $query)
 
-  set selected (~/.scripts/fetch-yt.js "$query_str" $count \
+  set selected (~/scripts/fetch-yt.js "$query_str" $count \
     | fzf --prompt='Pick video: ' --ansi --sync \
       --preview='
         set video_id (echo {} | awk -F "\t" "{print \$3}")
@@ -105,15 +79,53 @@ function yt-search
   end
 end
 
-bind \cy "~/.scripts/yt-search.sh"
-
+# -- env
+set --export XDG_CONFIG_HOME $HOME/.config
+set --export XDG_CACHE_HOME $HOME/.cache
+set --export XDG_DATA_HOME $HOME/.local/share
+set --export XDG_STATE_HOME $HOME/.local/state
+set --export BAT_THEME ansi
 set --export LC_ALL en_US.UTF-8  
 set --export LANG en_US.UTF-8
-
 set --export EDITOR "nvim"
 set --export VISUAL "nvim"
 
-set -gx PATH $HOME/.scripts $PATH
+set --export NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
+set --export GNUPGHOME $XDG_DATA_HOME/gnupg
+set --export AWS_SHARED_CREDENTIALS_FILE $XDG_CONFIG_HOME/aws/credentials
+set --export AWS_CONFIG_FILE $XDG_CONFIG_HOME/aws/config
+set --export WGETRC $XDG_CONFIG_HOME/wget/wgetrc
+set --export LESSHISTFILE $XDG_CACHE_HOME/lesshst
+set --export SQLITE_HISTORY $XDG_STATE_HOME/sqlite_history
+set --export PSQL_HISTORY $XDG_STATE_HOME/psql_history
+set --export NODE_REPL_HISTORY $XDG_DATA_HOME/node_repl_history
+set --export PYTHON_HISTORY $XDG_STATE_HOME/python_history
+set --export TEXMFHOME $XDG_DATA_HOME/texmf
+set --export TEXMFVAR $XDG_CACHE_HOME/texlive/texmf-var
+set --export TEXMFCONFIG $XDG_CONFIG_HOME/texlive/texmf-config
+set --export WINEPREFIX $XDG_DATA_HOME/wineprefixes/default
+set --export RUSTUP_HOME $XDG_DATA_HOME/rustup
+set --export PYENV_ROOT $XDG_DATA_HOME/pyenv
+set --export PRETTIERD_SOCKET_DIR $XDG_CACHE_HOME/prettierd
+set --export OMNISHARPHOME $XDG_CONFIG_HOME/omnisharp 
+set --export OLLAMA_MODELS $XDG_DATA_HOME/ollama/models
+set --export NUGET_PACKAGES $XDG_CACHE_HOME/NuGetPackages
+set --export MPLCONFIGDIR $XDG_CONFIG_HOME/matplotlib
+set --export GRADLE_USER_HOME $XDG_DATA_HOME/gradle
+set --export DOCKER_CONFIG $XDG_CONFIG_HOME/docker
+set --export DEGIT_CACHE $XDG_CACHE_HOME/degit
+set --export CARGO_HOME $XDG_DATA_HOME/cargo
+
+# -- path
+set --export LDFLAGS -L/usr/local/opt/llvm/lib
+set --export PATH $HOME/.dotnet/tools $PATH
+set --export PATH $CARGO_HOME/bin $PATH
+set --export PATH $XDG_CACHE_HOME/go/bin $PATH
+set --export PATH $HOME/scripts $PATH
+set --export PATH $HOME/.local/bin $PATH
+
+# -- tmp
+set --export PATH $HOME/tmp/cmus/usr/local/bin $PATH
 
 set fish_greeting ""
 
