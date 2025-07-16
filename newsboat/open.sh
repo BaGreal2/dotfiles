@@ -5,6 +5,6 @@ case "$1" in
         iina "$1" --mpv-fs
         ;;
     *)
-        firefox "$1"
+        librewolf "$1"
         ;;
 esac
