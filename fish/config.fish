@@ -1,7 +1,8 @@
 alias vim=nvim
 alias ls="lsd --group-dirs first"
 alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
-alias qview="open -a qView"
+alias qview="/Applications/qView.app/Contents/MacOS/qView"
+alias clean-ds="fd '.DS_Store' ~ --type f --hidden --no-ignore -X rm"
 set fish_prompt_pwd_dir_length 3
 
 # -- vi mode
