@@ -1,12 +1,12 @@
-color listnormal         white      black
+color listnormal         white      default
 color listfocus          black      white     standout
 
-color listnormal_unread  cyan       black      bold
+color listnormal_unread  cyan       default      bold
 color listfocus_unread   black      white      bold standout
 
-color info               blue       black
-color article            white      black
-color title              magenta    black      bold
+color info               blue       default
+color article            white      default
+color title              magenta    default      bold
 
 auto-reload yes
 
