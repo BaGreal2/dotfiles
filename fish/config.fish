@@ -1,6 +1,17 @@
+# -- env
+set --export XDG_CONFIG_HOME $HOME/.config
+set --export XDG_CACHE_HOME $HOME/.cache
+set --export XDG_DATA_HOME $HOME/.local/share
+set --export XDG_STATE_HOME $HOME/.local/state
+set --export BAT_THEME ansi
+set --export LC_ALL en_US.UTF-8  
+set --export LANG en_US.UTF-8
+set --export EDITOR "nvim"
+set --export VISUAL "nvim"
+
+# -- aliases
 alias vim=nvim
 alias ls="lsd --group-dirs first"
-alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 alias qview="/Applications/qView.app/Contents/MacOS/qView"
 alias clean-ds="fd '.DS_Store' ~ --type f --hidden --no-ignore -X rm"
 set fish_prompt_pwd_dir_length 3
@@ -32,7 +43,20 @@ fzf_configure_bindings --directory=\ct
 
 # -- custom bindings
 function vm
-  vim $(fzf -m --preview="bat --color=always {}")
+  set files (fd --type f \
+    --exclude node_modules \
+    --exclude .next \
+    --exclude .nx \
+    --exclude dist \
+    --exclude build \
+    | fzf -m --preview="bat --color=always {}")
+  if test -n "$files"
+    vim $files
+  end
+end
+
+function yarn
+    command yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config" $argv
 end
 
 function mem
@@ -70,7 +94,7 @@ function yt-search
     | fzf --prompt='Pick video: ' --ansi --sync \
       --preview='
         set video_id (echo {} | awk -F "\t" "{print \$3}")
-        kitty icat --clear --transfer-mode=memory --stdin=no --place={$FZF_PREVIEW_COLUMNS}x{$FZF_PREVIEW_LINES}@0x0 https://img.youtube.com/vi/$video_id/hqdefault.jpg
+        kitty icat --clear --transfer-mode=memory --stdin=no --scale-up --place={$FZF_PREVIEW_COLUMNS}x{$FZF_PREVIEW_LINES}@0x0 https://img.youtube.com/vi/$video_id/hqdefault.jpg
       ')
 
   if test -n "$selected"
@@ -80,17 +104,7 @@ function yt-search
   end
 end
 
-# -- env
-set --export XDG_CONFIG_HOME $HOME/.config
-set --export XDG_CACHE_HOME $HOME/.cache
-set --export XDG_DATA_HOME $HOME/.local/share
-set --export XDG_STATE_HOME $HOME/.local/state
-set --export BAT_THEME ansi
-set --export LC_ALL en_US.UTF-8  
-set --export LANG en_US.UTF-8
-set --export EDITOR "nvim"
-set --export VISUAL "nvim"
-
+# -- xdg dotfiles
 set --export NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
 set --export GNUPGHOME $XDG_DATA_HOME/gnupg
 set --export AWS_SHARED_CREDENTIALS_FILE $XDG_CONFIG_HOME/aws/credentials
@@ -116,9 +130,9 @@ set --export GRADLE_USER_HOME $XDG_DATA_HOME/gradle
 set --export DOCKER_CONFIG $XDG_CONFIG_HOME/docker
 set --export DEGIT_CACHE $XDG_CACHE_HOME/degit
 set --export CARGO_HOME $XDG_DATA_HOME/cargo
+set --export RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/ripgreprc
 
 # -- path
-set --export LDFLAGS -L/usr/local/opt/llvm/lib
 set --export PATH $HOME/.dotnet/tools $PATH
 set --export PATH $CARGO_HOME/bin $PATH
 set --export PATH $XDG_CACHE_HOME/go/bin $PATH
