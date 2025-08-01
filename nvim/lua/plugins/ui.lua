@@ -2,6 +2,7 @@ return {
   {
     'hoob3rt/lualine.nvim',
     event = 'BufEnter',
+    enabled = false,
     config = function()
       require('lualine').setup {
         options = {
@@ -55,6 +56,7 @@ return {
   {
     'akinsho/nvim-bufferline.lua',
     event = 'BufEnter',
+    enabled = false,
     config = function()
       require('bufferline').setup({
         options = {
