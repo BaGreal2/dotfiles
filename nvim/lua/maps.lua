@@ -27,8 +27,8 @@ keymap.set('n', '<leader>l', ':wincmd L<CR>', { noremap = true, silent = true })
 keymap.set('n', '<leader>k', ':wincmd K<CR>', { noremap = true, silent = true })
 keymap.set('n', '<leader>j', ':wincmd J<CR>', { noremap = true, silent = true })
 
-keymap.set('n', 'TT', ':FTermToggle<Return>', { silent = true })
-keymap.set('t', 'TT', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', { silent = true })
+-- keymap.set('n', 'TT', ':FTermToggle<Return>', { silent = true })
+-- keymap.set('t', 'TT', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', { silent = true })
 
 keymap.set('n', '<C-k>', 'q:i', { silent = true })
 

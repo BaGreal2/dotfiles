@@ -2,6 +2,7 @@ return {
   {
     'numToStr/FTerm.nvim',
     cmd = 'FTermToggle',
+    enabled = false,
     config = function()
       require('FTerm').setup({
         border = 'rounded',
