@@ -3,7 +3,7 @@ DEFAULT_NAME="cmus"
 
 export PATH="$HOME/tmp/cmus/usr/local/bin:$PATH"
 
-TITLE=$(cmus-remote -C "format_print '%t'")
+TITLE=$(cmus-remote -C "format_print '%a - %t'")
 FILE=$(cmus-remote -C "format_print '%f'" | sed 's!.*/!!; s!\..*!!')
 STATUS=$(cmus-remote -C status | awk '/status/{print $2}')
 

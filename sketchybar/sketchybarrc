@@ -105,8 +105,7 @@ sketchybar --add item cmus right \
            --subscribe cmus cmus_update
 
 # sketchybar --add item cpu right \
-#            --set cpu update_freq=2 script="$PLUGIN_DIR/cpu.sh" \
-#            label.width=36
+#            --set cpu update_freq=2 script="$PLUGIN_DIR/cpu.sh"
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
