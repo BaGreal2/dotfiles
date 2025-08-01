@@ -1,53 +1,3 @@
-vim.api.nvim_create_user_command('Esfix', function()
-  local file = vim.fn.expand('%:p')
-  print("Formatted current file.")
-  vim.cmd("silent! !eslint_d --fix " .. file)
-end, {})
-
------------ Compilation "mode" -----------
-_G.compile_cmd = ""
-
-local compile_commands = {
-  ["%.c$"] = "make && ./main",
-  ["%.cs$"] = "dotnet run",
-  ["%.tsx$"] = "npx tsc --noEmit",
-  ["%.py$"] = "python3 ./%.py",
-  ["%.js$"] = "node ./%.js",
-  ["%.ts$"] = "ts-node ./%.ts",
-  ["%.rs$"] = "cargo run"
-}
-
-local function set_compile_command_by_filename()
-  local filename = vim.fn.expand("%:t")
-  _G.compile_cmd = ""
-
-  for pattern, command in pairs(compile_commands) do
-    if filename:match(pattern) then
-      _G.compile_cmd = command
-      -- print("Auto compile command set to: " .. _G.compile_cmd)
-      return
-    end
-  end
-end
-
-vim.api.nvim_create_user_command('SetCompileCommand', function(args)
-  _G.compile_cmd = args.args
-  print("Compile command set to: " .. _G.compile_cmd)
-end, { nargs = 1 })
-
-vim.api.nvim_create_user_command('Compile', function()
-  if _G.compile_cmd == "" then
-    print("No compile command set. Use :SetCompileCommand to set one.")
-  else
-    vim.cmd("split | resize 10 | term " .. _G.compile_cmd)
-    vim.api.nvim_command('normal! G')
-  end
-end, {})
-
-vim.api.nvim_create_autocmd("BufEnter", {
-  callback = set_compile_command_by_filename
-})
-
 ----------- Toggle window layout -----------
 
 vim.g.maximized_window = 0
@@ -67,3 +17,51 @@ function ToggleMaximize()
 end
 
 vim.api.nvim_set_keymap('n', '<Leader>w', ':lua ToggleMaximize()<CR>', { noremap = true, silent = true })
+
+-- Terminal hardening: no Treesitter, no statuscolumn/signcolumn in the term window
+vim.api.nvim_create_autocmd('TermOpen', {
+  callback = function(ev)
+    pcall(vim.treesitter.stop, ev.buf)
+    vim.schedule(function()
+      local win = vim.fn.bufwinid(ev.buf)
+      if win ~= -1 then
+        vim.wo[win].statuscolumn = ''
+        vim.wo[win].signcolumn = 'no'
+        vim.wo[win].cursorline = false
+      end
+    end)
+  end,
+})
+
+local function term_prompt(size)
+  size = size or 10
+  local cmd = vim.fn.input('term> ', vim.g._last_term_cmd or '', 'shellcmd')
+  if cmd == '' then return end
+  vim.g._last_term_cmd = cmd
+
+  local term_buf = vim.api.nvim_create_buf(false, true)
+  vim.bo[term_buf].bufhidden = 'wipe'
+
+  vim.cmd('belowright ' .. size .. 'split')
+  local term_win = vim.api.nvim_get_current_win()
+  vim.api.nvim_win_set_buf(term_win, term_buf)
+
+  vim.api.nvim_buf_call(term_buf, function()
+    vim.fn.termopen({ vim.o.shell, '-lc', cmd })
+  end)
+end
+
+vim.keymap.set('n', '<leader>t', function() term_prompt(10) end)
+
+vim.keymap.set('n', '<leader>T', function()
+  if not vim.g._last_term_cmd then return end
+
+  local term_buf = vim.api.nvim_create_buf(false, true)
+  vim.bo[term_buf].bufhidden = 'wipe'
+  vim.cmd('belowright 10split')
+  local term_win = vim.api.nvim_get_current_win()
+  vim.api.nvim_win_set_buf(term_win, term_buf)
+  vim.api.nvim_buf_call(term_buf, function()
+    vim.fn.termopen({ vim.o.shell, '-lc', vim.g._last_term_cmd })
+  end)
+end)

@@ -7,7 +7,9 @@ return {
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
-      local lspkind = require 'lspkind'
+      -- local lspkind = require 'lspkind'
+      local icons = require('mini.icons')
+      icons.setup()
 
       require('cmp').setup({
         completion = {
@@ -27,11 +29,22 @@ return {
           { name = 'nvim_lsp' },
           { name = 'buffer' },
         }),
+        -- formatting = {
+        --   format = lspkind.cmp_format({
+        --     with_text = false,
+        --     maxwidth = 50,
+        --   }),
+        -- },
         formatting = {
-          format = lspkind.cmp_format({
-            with_text = false,
-            maxwidth = 50,
-          }),
+          fields = { 'abbr', 'menu' },
+          format = function(entry, item)
+            local icon, hl = icons.get('lsp', item.kind)
+            if icon then
+              item.menu = icon .. ' '
+              item.menu_hl_group = hl
+            end
+            return item
+          end,
         },
         window = {
           completion = require('cmp').config.window.bordered(),
@@ -59,6 +72,7 @@ return {
   -- },
   {
     'numToStr/Comment.nvim',
+    event = "VeryLazy",
     config = function()
       require('Comment').setup({
         toggler = {

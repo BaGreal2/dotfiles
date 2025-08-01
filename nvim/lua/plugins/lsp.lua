@@ -2,6 +2,7 @@ return {
   {
     'glepnir/lspsaga.nvim',
     event = 'LspAttach',
+    enabled = false,
     config = function()
       require('lspsaga').setup({
         ui = {
@@ -32,6 +33,7 @@ return {
   },
   {
     'onsails/lspkind-nvim',
+    enabled = false,
     config = function()
       require('lspkind').init({
         mode = 'symbol_text',
@@ -74,44 +76,21 @@ return {
     config = function()
       local on_attach_maps = function(bufnr)
         local opts = { noremap = true, silent = true, buffer = bufnr }
-        vim.keymap.set('n', 'K', '<Cmd>Lspsaga hover_doc<CR>', opts)
-        vim.keymap.set('n', '<A-[>', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
-        vim.keymap.set('n', '<A-]>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
-        vim.keymap.set('n', 'gd', '<Cmd>Lspsaga finder<CR>', opts)
-        vim.keymap.set('n', 'gl', '<Cmd>lua vim.diagnostic.open_float(0, { scope="line"})<CR>', opts)
-        vim.keymap.set('n', 'gp', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-        vim.keymap.set('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
-        vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+        local map = function(mode, lhs, rhs)
+          vim.keymap.set(mode, lhs, rhs, opts)
+        end
+
+        map("n", "K", vim.lsp.buf.hover)
+        map("n", "<A-[>", function() vim.diagnostic.jump({ count = -1, float = true, wrap = true }) end)
+        map("n", "<A-]>", function() vim.diagnostic.jump({ count = 1, float = true, wrap = true }) end)
+        map("n", "gr", vim.lsp.buf.references)
+        map("n", "gl", function() vim.diagnostic.open_float(nil, { scope = "line" }) end)
+        map("n", "gd", vim.lsp.buf.definition)
+        map("n", "<leader>rn", vim.lsp.buf.rename)
+        map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
       end
 
-      -- local on_attach = function(client, bufnr)
-      --   on_attach_maps(bufnr)
-      --   client.server_capabilities.semanticTokensProvider = nil
-      --
-      --   -- format on save
-      --   if client.server_capabilities.documentFormattingProvider then
-      --     vim.api.nvim_create_autocmd("BufWritePre", {
-      --       group = vim.api.nvim_create_augroup("Format", { clear = true }),
-      --       buffer = bufnr,
-      --       callback = function() vim.lsp.buf.format() end
-      --     })
-      --   end
-      -- end
-
-      local on_attach_csharp = function(client, bufnr)
-        on_attach_maps(bufnr)
-        client.server_capabilities.semanticTokensProvider = nil
-
-        -- format on save for csharp (sync, without check)
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          group = vim.api.nvim_create_augroup("Format", { clear = true }),
-          buffer = bufnr,
-          callback = function() vim.lsp.buf.format() end
-        })
-      end
-
-      -- disable semantic tokens for typescript
-      local on_attach_no_highlight = function(client, bufnr)
+      local on_lsp_attach = function(client, bufnr)
         on_attach_maps(bufnr)
         client.server_capabilities.semanticTokensProvider = nil
       end
@@ -124,7 +103,7 @@ return {
       require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
       require('lspconfig').vtsls.setup {
-        on_attach = on_attach_no_highlight,
+        on_attach = on_lsp_attach,
       }
       require('lspconfig').eslint.setup {
         settings = {
@@ -134,7 +113,7 @@ return {
 
       -- HTML
       require('lspconfig').html.setup {
-        on_attach = on_attach_no_highlight,
+        on_attach = on_lsp_attach,
         embeddedLanguages = {
           css = true,
           javascript = false
@@ -145,26 +124,26 @@ return {
 
       -- CSS
       require('lspconfig').cssls.setup {
-        on_attach = on_attach_no_highlight,
+        on_attach = on_lsp_attach,
         capabilities = capabilities
       }
       require('lspconfig').tailwindcss.setup {}
 
       -- C++
       require('lspconfig').clangd.setup {
-        on_attach = on_attach_no_highlight,
+        on_attach = on_lsp_attach,
         filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
         cmd = { "clangd", "--offset-encoding=utf-16" }
       }
 
       -- C#
       require('lspconfig').csharp_ls.setup {
-        on_attach = on_attach_no_highlight,
+        on_attach = on_lsp_attach,
       }
 
       -- Rust
       require('lspconfig').rust_analyzer.setup {
-        on_attach = on_attach_no_highlight,
+        on_attach = on_lsp_attach,
         settings = {
           ['rust-analyzer'] = {
             diagnostics = {
@@ -176,17 +155,17 @@ return {
       }
 
       require('lspconfig').gopls.setup {
-        on_attach = on_attach_no_highlight,
+        on_attach = on_lsp_attach,
       }
 
       -- Python
       require('lspconfig').pyright.setup {
-        on_attach = on_attach_no_highlight,
+        on_attach = on_lsp_attach,
       }
 
       -- LUA
       require('lspconfig').lua_ls.setup {
-        on_attach = on_attach_no_highlight,
+        on_attach = on_lsp_attach,
         settings = {
           Lua = {
             diagnostics = {
@@ -201,12 +180,12 @@ return {
       }
 
       require('lspconfig').phpactor.setup {
-        on_attach = on_attach_no_highlight,
+        on_attach = on_lsp_attach,
       }
 
       -- SQL
       require('lspconfig').sqlls.setup {
-        on_attach = on_attach_no_highlight,
+        on_attach = on_lsp_attach,
       }
 
       -- Markdown
