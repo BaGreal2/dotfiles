@@ -5,7 +5,7 @@ local function diag_segment()
   local function add(sev, hl, icon)
     local n = #vim.diagnostic.get(b, { severity = sev })
     if n > 0 then
-      parts[#parts + 1] = hl .. icon .. n .. "%*" -- no extra spaces
+      parts[#parts + 1] = hl .. icon .. n .. "%*"
     end
   end
 
@@ -14,7 +14,7 @@ local function diag_segment()
   add(vim.diagnostic.severity.INFO, "%#DiagnosticInfo#", "I")
   add(vim.diagnostic.severity.HINT, "%#DiagnosticHint#", "H")
 
-  return table.concat(parts, " ") -- exactly one space between chunks
+  return table.concat(parts, " ")
 end
 
 local function git_segment()
