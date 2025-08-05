@@ -5,7 +5,7 @@ require('plugin-setup')
 require('commands')
 require('autocmds')
 require('statusline')
+require('lsp')
 
 -- Highlights linking (Needs to be here before initial draw)
 vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
-vim.api.nvim_set_hl(0, "FloatBorder", { link = "TelescopeBorder" })
