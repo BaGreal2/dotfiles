@@ -7,17 +7,6 @@ return {
     end
   },
   {
-    'dinhhuy258/git.nvim',
-    enabled = false,
-    config = function()
-      require('git').setup({
-        keymaps = {
-          blame = ""
-        }
-      })
-    end
-  },
-  {
     'tpope/vim-fugitive',
     cmd = {
       'Git', 'G',
