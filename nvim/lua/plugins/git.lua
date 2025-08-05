@@ -14,7 +14,7 @@ return {
       'Gread', 'Gwrite'
     },
     keys = {
-      { '<leader>gm',  ':Gdiffsplit!<CR>' },
+      { '<leader>gm',  ':Gvdiffsplit!<CR>' },
       { '<leader>gh2', ':diffget //2<CR>' },
       { '<leader>gh3', ':diffget //3<CR>' },
     },
