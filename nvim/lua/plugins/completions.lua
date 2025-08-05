@@ -1,6 +1,7 @@
 return {
   {
     'saghen/blink.cmp',
+    event = 'InsertEnter',
     version = '1.*',
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -26,5 +27,12 @@ return {
       },
     },
     opts_extend = { "sources.default" }
+  },
+  {
+    'echasnovski/mini.comment',
+    version = false,
+    config = function()
+      require('mini.comment').setup()
+    end,
   },
 }
