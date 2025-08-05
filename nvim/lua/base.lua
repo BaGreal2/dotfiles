@@ -45,6 +45,7 @@ vim.opt.wildignore:append {
   '*/temp/*',
   '*.o',
 }
+vim.o.grepprg = "rg --vimgrep --hidden --glob '!.git/**' --glob '!node_modules/**'"
 
 -- MacOS
 vim.opt.clipboard:append { 'unnamedplus' }
