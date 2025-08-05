@@ -5,8 +5,6 @@ keymap.set('n', 'x', '"_x')
 keymap.set('n', '+', '<C-a>')
 keymap.set('n', '-', '<C-x>')
 
--- keymap.set('n', 'dw', 'vb"_d')
-
 keymap.set('n', '<C-a>', 'gg<S-v>G')
 
 keymap.set('n', 'te', ':tabedit<Return>', { silent = true })
@@ -27,12 +25,6 @@ keymap.set('n', '<leader>l', ':wincmd L<CR>', { noremap = true, silent = true })
 keymap.set('n', '<leader>k', ':wincmd K<CR>', { noremap = true, silent = true })
 keymap.set('n', '<leader>j', ':wincmd J<CR>', { noremap = true, silent = true })
 
--- keymap.set('n', 'TT', ':FTermToggle<Return>', { silent = true })
--- keymap.set('t', 'TT', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', { silent = true })
-
-keymap.set('n', '<C-k>', 'q:i', { silent = true })
-
-keymap.set('n', '<C-f>', ':Esfix<Return>')
-keymap.set('n', '<C-c>', ':Compile<Return>')
+keymap.set('n', '<M-k>', 'q:i', { silent = true })
 
 vim.api.nvim_create_user_command('W', 'noa w', { nargs = 0 })
