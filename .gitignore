@@ -8,6 +8,7 @@ fish/fish_variables
 nvim/.luarc.json
 nvim/lazy-lock.json
 nvim/lazyvim.json
+nvim/lsp
 
 tmux/swap-pane
 tmux/plugins
