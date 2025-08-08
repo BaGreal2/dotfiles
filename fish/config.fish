@@ -14,6 +14,8 @@ alias vim=nvim
 alias ls="lsd --group-dirs first"
 alias qview="/Applications/qView.app/Contents/MacOS/qView"
 alias clean-ds="fd '.DS_Store' ~ --type f --hidden --no-ignore -X rm"
+alias ytv='yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]/best" -o "$HOME/videos/tmp/%(title)s.%(ext)s"'
+alias yta='yt-dlp -f "bestaudio" --extract-audio --audio-format mp3 --audio-quality 0 --add-metadata --parse-metadata "artist:%(uploader)s" -o "$HOME/music/xanin/tmp/%(title)s.%(ext)s"'
 set fish_prompt_pwd_dir_length 3
 
 # -- vi mode
