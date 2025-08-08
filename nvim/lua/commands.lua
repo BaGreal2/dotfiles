@@ -1,3 +1,5 @@
+vim.api.nvim_create_user_command('W', 'noa w', { nargs = 0 })
+
 local function term_prompt(size)
   size = size or 10
   local cmd = vim.fn.input('term> ', vim.g._last_term_cmd or '', 'shellcmd')
