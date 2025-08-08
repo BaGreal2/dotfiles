@@ -8,7 +8,8 @@ vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set('n', '<leader>ff', vim.lsp.buf.format)
 
-vim.lsp.enable({ "vtsls", "html", "cssls", "clangd", "rust_analyzer", "gopls", "pyright", "lua_ls" })
+vim.lsp.enable({ "vtsls", "eslint", "efm", "html", "cssls", "tailwindcss", "clangd", "rust_analyzer", "gopls", "pyright",
+  "lua_ls" })
 
 vim.lsp.config('rust_analyzer', {
   settings = {
@@ -20,9 +21,46 @@ vim.lsp.config('rust_analyzer', {
   }
 })
 
+local prettier = require("formatters.prettier")
+
+vim.lsp.config('efm', {
+  init_options = { documentFormatting = true },
+  filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "json", "yaml", "markdown", "html", "css" },
+  settings = {
+    rootMarkers = {
+      ".git/",
+      "package.json",
+      ".prettierrc",
+    },
+    languages = {
+      typescript = { prettier },
+      typescriptreact = { prettier },
+      javascript = { prettier },
+      javascriptreact = { prettier },
+      json = { prettier },
+      yaml = { prettier },
+      markdown = { prettier },
+      html = { prettier },
+      css = { prettier },
+    },
+  },
+})
+
+local disable_formatting_clients = {
+  vtsls = true,
+  html = true,
+  cssls = true,
+  eslint = true
+}
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
+
+    if disable_formatting_clients[client.name] then
+      client.server_capabilities.documentFormattingProvider = false
+    end
+
     if client.server_capabilities.semanticTokensProvider then
       client.server_capabilities.semanticTokensProvider = nil
     end
