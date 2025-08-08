@@ -6,8 +6,6 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 vim.opt.shortmess:append("I")
-vim.opt.title = true
-vim.opt.autoindent = true
 vim.opt.undofile = true
 vim.opt.swapfile = false
 vim.opt.hlsearch = true
@@ -36,16 +34,17 @@ vim.opt.path:append { '**' }
 vim.opt.wildignore:append {
   '*/node_modules/*',
   '*/.git/*',
+  '*/.idea/*',
+  '*/.vscode/*',
+  '*/.next/*',
   '*/build/*',
   '*/dist/*',
   '*/out/*',
-  '*/.idea/*',
-  '*/.vscode/*',
   '*/tmp/*',
   '*/temp/*',
   '*.o',
 }
-vim.o.grepprg = "rg --vimgrep --hidden --glob '!.git/**' --glob '!node_modules/**'"
+vim.o.grepprg = "rg --vimgrep --hidden --smart-case --glob '!.git/**' --glob '!node_modules/**' --glob '!.next/**'"
 
 -- MacOS
 vim.opt.clipboard:append { 'unnamedplus' }
