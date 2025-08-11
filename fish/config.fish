@@ -11,7 +11,7 @@ set --export VISUAL "nvim"
 
 # -- aliases
 alias vim=nvim
-alias ls="lsd --group-dirs first"
+alias ls="gls --color=always -ph --group-directories-first"
 alias qview="/Applications/qView.app/Contents/MacOS/qView"
 alias clean-ds="fd '.DS_Store' ~ --type f --hidden --no-ignore -X rm"
 alias ytv='yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]/best" -o "$HOME/videos/tmp/%(title)s.%(ext)s"'
@@ -36,7 +36,7 @@ end
 set -Ux FZF_DEFAULT_OPTS "
     --color=fg:#cecece,bg:-1,hl:#d2322d
     --color=fg+:#cecece,bg+:-1,hl+:#95cb82
-    --color=border:#333333,header:#2384C4,gutter:#181818
+    --color=border:#333333,header:#2384C4,gutter:#121212
     --color=spinner:#cd974b,info:#9ccfd8,separator:#333333
     --color=pointer:#dfdf8e,marker:#9B3596,prompt:#cecece
   "
