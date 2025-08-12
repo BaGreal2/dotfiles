@@ -5,6 +5,7 @@ require('plugin-setup')
 require('commands')
 require('autocmds')
 require('statusline')
+require('toggle-terminal')
 require('lsp')
 
 -- Highlights linking (Needs to be here before initial draw)
