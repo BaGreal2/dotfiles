@@ -7,6 +7,9 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set('n', '<leader>ff', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>qd', function()
+  vim.diagnostic.setqflist({ open = true })
+end)
 
 vim.lsp.enable({ "vtsls", "eslint", "efm", "html", "cssls", "tailwindcss", "clangd", "rust_analyzer", "gopls", "pyright",
   "lua_ls" })
