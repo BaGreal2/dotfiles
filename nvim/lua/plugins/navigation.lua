@@ -1,13 +1,25 @@
 return {
   {
     'stevearc/oil.nvim',
-    lazy = false,
+    init = function()
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+          if vim.fn.argc() == 1 and vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
+            require("lazy").load({ plugins = { "oil.nvim" } })
+            require("oil").open(vim.fn.argv(0))
+          end
+        end,
+      })
+    end,
     keys = {
-      { "sf", function() require("oil").open() end },
+      { "-", function() require("oil").open() end },
     },
     opts = {
+      keymaps = {
+        ["gx"] = "actions.open_cmdline",
+        ["go"] = "actions.open_external",
+      },
       skip_confirm_for_simple_edits = true,
-      view_options = { show_hidden = true },
       columns = {
         "permissions",
         "size",
@@ -18,15 +30,13 @@ return {
   {
     'echasnovski/mini.pick',
     version = false,
-    keys = function()
-      local pick = require('mini.pick')
-      return {
-        { ';f',   function() pick.builtin.files({}) end },
-        { ';r',   function() pick.builtin.grep_live({}) end },
-        { '\\\\', function() pick.builtin.buffers({}) end },
-        { ';;',   function() pick.builtin.resume() end },
-      }
-    end,
+    keys = {
+      { ';f',   function() require('mini.pick').builtin.files() end },
+      { ';r',   function() require('mini.pick').builtin.grep_live() end },
+      { ';t',   function() require('mini.pick').builtin.help() end },
+      { '\\\\', function() require('mini.pick').builtin.buffers() end },
+      { ';;',   function() require('mini.pick').builtin.resume() end },
+    },
     config = function()
       require('mini.pick').setup({
         options = {
