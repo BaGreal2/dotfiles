@@ -2,6 +2,7 @@ return {
   {
     'saghen/blink.cmp',
     event = 'InsertEnter',
+    enabled = false,
     version = '1.*',
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -21,8 +22,6 @@ return {
         menu = {
           auto_show = false,
           border = "rounded",
-          winhighlight =
-          "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
         }
       },
     },
