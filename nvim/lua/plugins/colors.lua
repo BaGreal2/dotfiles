@@ -1,20 +1,23 @@
 return {
   {
-    "zenbones-theme/zenbones.nvim",
+    "vague2k/vague.nvim",
     lazy = false,
-    dependencies = "rktjmp/lush.nvim",
     priority = 1000,
     config = function()
-      vim.g.zenbones = {
-        transparent_background = true
-      }
-      vim.cmd.colorscheme('zenbones')
+      require("vague").setup({
+        transparent = true,
+        italic = false,
+      })
+      vim.cmd("colorscheme vague")
+
       vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
     end
   },
   {
     'norcalli/nvim-colorizer.lua',
+    enabled = false,
+    event = "BufReadPost",
     ft = { 'html', 'css', 'scss', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'lua', 'conf', 'kitty', 'tmux' },
     config = function()
       require('colorizer').setup({ '*' })
