@@ -13,12 +13,18 @@ return {
     cmd = {
       'Git', 'G',
       'Gdiffsplit', 'Gvdiffsplit',
-      'Gread', 'Gwrite'
+      'Gread', 'Gwrite', 'Gclog'
     },
     keys = {
-      { '<leader>gm',  ':Gvdiffsplit!<CR>' },
-      { '<leader>gh2', ':diffget //2<CR>' },
-      { '<leader>gh3', ':diffget //3<CR>' },
+      { '<leader>gd', ':Gvdiffsplit!<CR>' },
+      { '<leader>dh', ':diffget //2<CR>' },
+      { '<leader>dl', ':diffget //3<CR>' },
+      { '<leader>gl', ':Gclog<CR>' },
+      { '<leader>gb', ':G blame<CR>' },
+      { '<leader>gf', ':G fetch<CR>' },
+      { '<leader>gc', ':G checkout ' },
+      { '<leader>gp', ':G push<CR>' },
+      { '<leader>gP', ':G pull<CR>' },
     },
   },
 }
