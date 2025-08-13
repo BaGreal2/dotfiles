@@ -1,6 +1,8 @@
 return {
   {
     'lewis6991/gitsigns.nvim',
+    enabled = false,
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require('gitsigns').setup()
       vim.keymap.set('n', '<leader>gb', '<Cmd>Gitsigns blame_line<CR>', {})
