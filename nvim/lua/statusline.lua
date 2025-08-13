@@ -17,18 +17,18 @@ local function diag_segment()
   return table.concat(parts, " ")
 end
 
-local function git_segment()
-  local gs = vim.b.gitsigns_status_dict
-  if not gs or not gs.head or gs.head == "" then return "" end
-  return string.format("  %s +%d ~%d -%d", gs.head, gs.added or 0, gs.changed or 0, gs.removed or 0)
-end
+-- local function git_segment()
+--   local gs = vim.b.gitsigns_status_dict
+--   if not gs or not gs.head or gs.head == "" then return "" end
+--   return string.format("%s +%d ~%d -%d", gs.head, gs.added or 0, gs.changed or 0, gs.removed or 0)
+-- end
 
 _G.MyStl         = function()
   return table.concat({
     " %f", " %m%r%h%w",
     "%=",
     diag_segment(),
-    "  %#StGit#", git_segment(), "%*",
+    -- "  %#StGit#", git_segment(), "%*",
     "  %y  %l:%c ",
   })
 end
