@@ -1,23 +1,13 @@
-# This is a demo config to showcase some of the most important commands.
-# It is meant to be changed and configured, as it is intentionally kept sparse.
-# For a (much) more advanced configuration example see my dotfiles:
-# https://github.com/FelixKratz/dotfiles
-
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
-##### Bar Appearance #####
-# Configuring the general appearance of the bar.
-# These are only some of the options available. For all options see:
 # https://felixkratz.github.io/SketchyBar/config/bar
-# If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
 # non-notch: 24px
-sketchybar --bar position=top height=37 notch_display_height=37 blur_radius=18 color=0x40000000 padding_left=12 padding_right=14
+# bg: 0x40000000
+# blur-radius: 18px
+sketchybar --bar position=top height=37 notch_display_height=37 blur_radius=0 color=0x00000000 padding_left=6 padding_right=14
 
-##### Changing Defaults #####
-# We now change some default values, which are applied to all further items.
-# For a full list of all available item properties see:
 # https://felixkratz.github.io/SketchyBar/config/items
 
 default=(
@@ -34,10 +24,7 @@ default=(
 )
 sketchybar --default "${default[@]}"
 
-##### Adding Mission Control Space Indicators #####
-# Let's add some mission control spaces:
 # https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
-# to indicate active and available mission control spaces.
 
 SPACE_ICONS=("􀓕" "􀤆" "􀪏" "􀉬" "􀑪" "6" "7" "8" "9")
 for i in "${!SPACE_ICONS[@]}"
@@ -51,7 +38,7 @@ do
     icon.padding_left=10
     icon.padding_right=13
     background.color=0x40ffffff
-    background.corner_radius=5
+    background.corner_radius=10
     background.height=28
     label.drawing=off
     script="$PLUGIN_DIR/space.sh"
@@ -60,20 +47,11 @@ do
   sketchybar --add space space."$sid" left --set space."$sid" "${space[@]}"
 done
 
-##### Adding Left Items #####
-# We add some regular items to the left side of the bar, where
-# only the properties deviating from the current defaults need to be set
-
 sketchybar --add item chevron left \
            --set chevron icon=􀆊 label.drawing=off icon.font="SF Pro:Bold:16.0" \
            --add item front_app left \
            --set front_app icon.drawing=off script="$PLUGIN_DIR/front_app.sh" label.font="SF Pro:Bold:14.0" padding_left=4 \
            --subscribe front_app front_app_switched
-
-# sketchybar --add item user left \
-#            --set user \
-#            label="$(whoami)" label.font.style="Bold" \
-#            icon=􀉪 icon.padding_left=12
 
 sketchybar --add item weather left \
            --set weather \
@@ -81,17 +59,6 @@ sketchybar --add item weather left \
            script="$PLUGIN_DIR/weather.sh" \
            update_freq=1500 \
            --subscribe weather mouse.clicked
-
-##### Adding Right Items #####
-# In the same way as the left items we can add items to the right side.
-# Additional position (e.g. center) are available, see:
-# https://felixkratz.github.io/SketchyBar/config/items#adding-items-to-sketchybar
-
-# Some items refresh on a fixed cycle, e.g. the clock runs its script once
-# every 10s. Other items respond to events they subscribe to, e.g. the
-# volume.sh script is only executed once an actual change in system audio
-# volume is registered. More info about the event system can be found here:
-# https://felixkratz.github.io/SketchyBar/config/events
 
 sketchybar --add item clock right \
            --set clock update_freq=10 script="$PLUGIN_DIR/clock.sh" \
@@ -104,8 +71,4 @@ sketchybar --add item cmus right \
            --set cmus update_freq=120 script="$PLUGIN_DIR/cmus.sh" icon.font="SF Pro:Regular:14.0" label.padding_right=6 \
            --subscribe cmus cmus_update
 
-# sketchybar --add item cpu right \
-#            --set cpu update_freq=2 script="$PLUGIN_DIR/cpu.sh"
-
-##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
