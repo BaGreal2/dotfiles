@@ -3,6 +3,7 @@ vim.opt.relativenumber = true
 
 vim.opt.shortmess:append("I")
 vim.opt.undofile = true
+vim.opt.cursorline = true
 vim.opt.swapfile = false
 vim.opt.hlsearch = true
 vim.opt.backup = false

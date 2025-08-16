@@ -13,14 +13,5 @@ return {
       vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
       vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
     end
-  },
-  {
-    'norcalli/nvim-colorizer.lua',
-    enabled = false,
-    event = "BufReadPost",
-    ft = { 'html', 'css', 'scss', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'lua', 'conf', 'kitty', 'tmux' },
-    config = function()
-      require('colorizer').setup({ '*' })
-    end
-  },
+  }
 }
