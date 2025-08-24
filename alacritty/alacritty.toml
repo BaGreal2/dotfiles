@@ -3,10 +3,10 @@ general.import = ["themes/zenbones_dark.toml"]
 
 [font]
 size = 16.0
-normal = { family = "Iosevka Nerd Font", style = "Regular" }
-bold = { family = "Iosevka Nerd Font", style = "SemiBold" }
-italic = { family = "Iosevka Nerd Font", style = "Light" }
-bold_italic = { family = "Iosevka Nerd Font", style = "SemiBold" }
+normal = { family = "IosevkaTerm NFM", style = "Regular" }
+bold = { family = "IosevkaTerm NFM SemiBold", style = "SemiBold" }
+italic = { family = "IosevkaTerm NFM Light", style = "Light" }
+bold_italic = { family = "IosevkaTerm NFM SemiBold", style = "SemiBold" }
 
 [cursor]
 style = { shape = "Block", blinking = "Never" }
@@ -15,7 +15,8 @@ style = { shape = "Block", blinking = "Never" }
 option_as_alt = "Both"
 decorations = "Buttonless"
 startup_mode = "Maximized"
-padding = { x = 10, y = 10 }
+dynamic_padding = true
+padding = { x = 10, y = 0 }
 
 [env]
 TERM = "xterm-256color"

@@ -8,10 +8,10 @@ background = "#3D4042"
 
 [colors.cursor]
 cursor = "#C4CACF"
-text = "#181818"
+text = "#121212"
 
 [colors.normal]
-black   = "#181818"
+black   = "#121212"
 red     = "#DE6E7C"
 green   = "#819B69"
 yellow  = "#B77E64"
