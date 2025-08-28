@@ -8,3 +8,5 @@ if project_dir ~= "" then
 else
   vim.opt_local.makeprg = "npx tsc --noEmit --pretty false"
 end
+
+vim.bo.iskeyword = vim.bo.iskeyword .. ",-,:"
