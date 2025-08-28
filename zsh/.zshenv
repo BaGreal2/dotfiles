@@ -1,0 +1,53 @@
+# xdg
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# base env
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+export EDITOR="nvim"
+export VISUAL="nvim"
+export BAT_THEME="ansi"
+export HOMEBREW_NO_ENV_HINTS=1
+
+# zsh junk
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
+export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+
+# xdg declutter
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export LESSHISTFILE="$XDG_CACHE_HOME/lesshst"
+export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
+export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node_repl_history"
+export PYTHON_HISTORY="$XDG_STATE_HOME/python_history"
+export TEXMFHOME="$XDG_DATA_HOME/texmf"
+export TEXMFVAR="$XDG_CACHE_HOME/texlive/texmf-var"
+export TEXMFCONFIG="$XDG_CONFIG_HOME/texlive/texmf-config"
+export WINEPREFIX="$XDG_DATA_HOME/wineprefixes/default"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
+export PRETTIERD_SOCKET_DIR="$XDG_CACHE_HOME/prettierd"
+export OMNISHARPHOME="$XDG_CONFIG_HOME/omnisharp"
+export OLLAMA_MODELS="$XDG_DATA_HOME/ollama/models"
+export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
+export MPLCONFIGDIR="$XDG_CONFIG_HOME/matplotlib"
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+export DEGIT_CACHE="$XDG_CACHE_HOME/degit"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
+
+# path
+export PATH="$HOME/.dotnet/tools:$PATH"
+export PATH="$CARGO_HOME/bin:$PATH"
+export PATH="$XDG_CACHE_HOME/go/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/tmp/cmus/usr/local/bin:$PATH"

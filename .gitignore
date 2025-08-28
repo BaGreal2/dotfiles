@@ -1,5 +1,8 @@
 **/.DS_Store
 
+zsh/.zsh_history
+zsh/.zcompdump
+
 fish/functions/
 fish/completions/
 fish/conf.d/
