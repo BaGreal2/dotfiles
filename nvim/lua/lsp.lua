@@ -1,18 +1,7 @@
-vim.keymap.set("n", "K", vim.lsp.buf.hover)
-vim.keymap.set("n", "<A-[>", function() vim.diagnostic.jump({ count = -1, float = true, wrap = true }) end)
-vim.keymap.set("n", "<A-]>", function() vim.diagnostic.jump({ count = 1, float = true, wrap = true }) end)
-vim.keymap.set("n", "gr", vim.lsp.buf.references)
-vim.keymap.set("n", "gl", function() vim.diagnostic.open_float(nil, { scope = "line" }) end)
-vim.keymap.set("n", "gd", vim.lsp.buf.definition)
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
-vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 vim.keymap.set('n', '<leader>ff', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>qd', function()
   vim.diagnostic.setqflist({ open = true })
 end)
-
-vim.lsp.enable({ "vtsls", "eslint", "efm", "html", "cssls", "tailwindcss", "clangd", "rust_analyzer", "gopls", "pyright",
-  "lua_ls" })
 
 vim.lsp.config('rust_analyzer', {
   settings = {
@@ -24,11 +13,12 @@ vim.lsp.config('rust_analyzer', {
   }
 })
 
-local prettier = require("formatters.prettier")
+local prettier = { formatCommand = "prettierd --stdin-filepath ${INPUT}", formatStdin = true }
+local black    = { formatCommand = "black -q -", formatStdin = true }
 
 vim.lsp.config('efm', {
   init_options = { documentFormatting = true },
-  filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "json", "yaml", "markdown", "html", "css" },
+  filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "json", "yaml", "markdown", "html", "css", "python" },
   settings = {
     rootMarkers = {
       ".git/",
@@ -45,6 +35,7 @@ vim.lsp.config('efm', {
       markdown = { prettier },
       html = { prettier },
       css = { prettier },
+      python = { black }
     },
   },
 })
@@ -55,6 +46,9 @@ local disable_formatting_clients = {
   cssls = true,
   eslint = true
 }
+
+vim.lsp.enable({ "ts_ls", "eslint", "efm", "html", "cssls", "tailwindcss", "clangd", "rust_analyzer", "gopls", "pyright",
+  "lua_ls", "tinymist" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)

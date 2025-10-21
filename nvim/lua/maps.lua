@@ -1,14 +1,20 @@
 local keymap = vim.keymap
 
-keymap.set('n', 'ss', ':split<Return>', { silent = true })
-keymap.set('n', 'sv', ':vsplit<Return>', { silent = true })
+keymap.set('n', '<C-n>', ':cnext<CR>')
+keymap.set('n', '<C-p>', ':cprevious<CR>')
 
-keymap.set('', 'sh', '<C-w>h')
-keymap.set('', 'sk', '<C-w>k')
-keymap.set('', 'sj', '<C-w>j')
-keymap.set('', 'sl', '<C-w>l')
+keymap.set('n', '<leader>s', '1z=')
 
-keymap.set('n', '<M-k>', 'q:i', { silent = true })
+local function feed(keys)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, false, true), "n", true)
+end
 
-keymap.set('n', '<C-n>', '<cmd>cnext<cr>')
-keymap.set('n', '<C-p>', '<cmd>cprevious<cr>')
+local function close_tag()
+  if vim.fn.mode() == "i" then feed("<C-\\><C-n>") end
+  feed([[F<lyiWf>a<C-r>"<Esc>bi/<Esc>cit]])
+end
+
+vim.keymap.set({ "n", "i" }, "<C-t>", close_tag, { silent = true })
+vim.keymap.set({ "n", "i" }, "<leader>t", close_tag, { silent = true })
+vim.keymap.set("i", "<leader>d", '<C-r>=strftime("%Y-%m-%d %H:%M:%S")<CR>')
+vim.keymap.set("n", "<leader>d", 'i<C-r>=strftime("%Y-%m-%d %H:%M:%S")<CR><Esc>')

@@ -1,16 +1,7 @@
 return {
   {
     'stevearc/oil.nvim',
-    init = function()
-      vim.api.nvim_create_autocmd("VimEnter", {
-        callback = function()
-          if vim.fn.argc() == 1 and vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
-            require("lazy").load({ plugins = { "oil.nvim" } })
-            require("oil").open(vim.fn.argv(0))
-          end
-        end,
-      })
-    end,
+    lazy = false,
     keys = {
       { "-", function() require("oil").open() end },
     },
@@ -28,24 +19,53 @@ return {
     },
   },
   {
-    'echasnovski/mini.pick',
-    version = false,
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.8',
+    dependencies = { 'nvim-lua/plenary.nvim' },
     keys = {
-      { ';f',   function() require('mini.pick').builtin.files() end },
-      { ';r',   function() require('mini.pick').builtin.grep_live() end },
-      { ';t',   function() require('mini.pick').builtin.help() end },
-      { '\\\\', function() require('mini.pick').builtin.buffers() end },
-      { ';;',   function() require('mini.pick').builtin.resume() end },
+      { ';f',   function() require('telescope.builtin').find_files() end },
+      { ';r',   function() require('telescope.builtin').live_grep() end },
+      { ';t',   function() require('telescope.builtin').help_tags() end },
+      { '\\\\', function() require('telescope.builtin').buffers() end },
+      { ';;',   function() require('telescope.builtin').resume() end },
     },
     config = function()
-      require('mini.pick').setup({
-        options = {
-          use_cache = true
+      local actions = require('telescope.actions')
+      local actions_layout = require('telescope.actions.layout')
+
+      require('telescope').setup({
+        defaults = {
+          mappings = {
+            n = {
+              ["d"] = actions.delete_buffer,
+              ["<A-p>"] = actions_layout.toggle_preview
+            },
+            i = {
+              ["<A-p>"] = actions_layout.toggle_preview
+            },
+          },
         },
-        source = {
-          show = require('mini.pick').default_show,
+        pickers = {
+          find_files = {
+            previewer = false,
+            theme = "ivy"
+          },
+          buffers = {
+            previewer = false,
+            sort_mru = true,
+            sort_lastused = true,
+            initial_mode = "normal",
+            theme = "ivy"
+          },
+          live_grep = {
+            previewer = false,
+            theme = "ivy"
+          },
+          help_tags = {
+            theme = "ivy"
+          },
         },
       })
     end,
-  }
+  },
 }
