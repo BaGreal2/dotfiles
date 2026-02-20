@@ -2,6 +2,9 @@
 
 zsh/.zsh_history
 zsh/.zcompdump
+zsh/.zcompdump*
+zsh/.zcompcache
+zsh/.zsh_sessions
 
 fish/functions/
 fish/completions/
