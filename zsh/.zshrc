@@ -5,8 +5,15 @@ alias ll='ls -l'
 alias la='ls -la'
 alias qview='/Applications/qView.app/Contents/MacOS/qView'
 alias clean-ds="fd '.DS_Store' ~ --type f --hidden --no-ignore -X rm"
-alias ytv='yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]/best" -o "$HOME/videos/tmp/%(title)s.%(ext)s"'
+alias ytv='yt-dlp -f "bv*[ext=mp4][vcodec^=avc1]+ba[ext=m4a]/b[ext=mp4][vcodec^=avc1]/best" -o "$HOME/videos/tmp/%(title)s.%(ext)s"'
 alias yta='yt-dlp -f "bestaudio" --extract-audio --audio-format mp3 --audio-quality 0 --add-metadata --parse-metadata "artist:%(uploader)s" -o "$HOME/music/xanin/tmp/%(title)s.%(ext)s"'
+alias fs='fastfetch --logo mac2_small --structure "title:os:host:kernel:uptime:packages:shell:wm:terminal:cpu:memory"'
+alias cmus='LC_ALL=C.UTF-8 cmus'
+
+alias yad='yarn app:dev'
+alias ydd='yarn dashboard:dev'
+alias ysd='yarn sign:dev'
+alias ywd='yarn website:dev'
 
 # base
 PROMPT_DIRTRIM=3
@@ -19,11 +26,11 @@ bindkey -M vicmd 'v' edit-command-line
 
 # fzf
 export FZF_DEFAULT_OPTS=$'
-    --color=fg:#cecece,bg:-1,hl:#d2322d
-    --color=fg+:#cecece,bg+:-1,hl+:#95cb82
-    --color=border:#333333,header:#2384C4,gutter:#121212
-    --color=spinner:#cd974b,info:#9ccfd8,separator:#333333
-    --color=pointer:#dfdf8e,marker:#9B3596,prompt:#cecece
+    --color=fg:-1,bg:-1,hl:yellow
+    --color=fg+:-1,bg+:-1,hl+:green
+    --color=border:bright-black,header:blue,gutter:-1
+    --color=spinner:yellow,info:cyan,separator:bright-black
+    --color=pointer:bright-yellow,marker:magenta,prompt:-1
 '
 
 # functions
@@ -39,9 +46,19 @@ vm() {
   (( ${#files[@]} )) && vim "${files[@]}"
 }
 
-yarn() {
-  command yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config" "$@"
-}
+export HISTFILE="$HOME/.local/state/zsh/history"
+export HISTSIZE=100000
+export SAVEHIST=100000
+setopt inc_append_history
+setopt share_history
+setopt hist_ignore_all_dups
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
+
+setopt MULTIOS
+setopt EXTENDED_HISTORY
+setopt IGNORE_EOF
+setopt INTERACTIVE_COMMENTS
 
 fzf-history-insert() {
   local sel left=$LBUFFER right=$RBUFFER
@@ -54,9 +71,14 @@ zle -N fzf-history-insert
 bindkey -M viins '^R' fzf-history-insert
 bindkey -M vicmd '^R' fzf-history-insert
 bindkey -M emacs '^R' fzf-history-insert
+bindkey -M viins '^?' backward-delete-char
+bindkey -M vicmd '^?' backward-delete-char
+bindkey -M viins '^H' backward-kill-word
+bindkey -M viins '^D' delete-char
 
 # sources
 source "$ZDOTDIR/prompt.zsh"
 source "$ZDOTDIR/completions.zsh"
 
-# eval "$(zoxide init zsh)"
+# hooks
+eval "$(direnv hook zsh)"

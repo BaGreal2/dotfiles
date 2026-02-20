@@ -11,6 +11,7 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export BAT_THEME="ansi"
 export HOMEBREW_NO_ENV_HINTS=1
+export LESS="-R"
 
 # zsh junk
 export HISTFILE="$XDG_STATE_HOME/zsh/history"
@@ -18,6 +19,8 @@ export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 
 # xdg declutter
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
+export NPM_CONFIG_PREFIX="$XDG_DATA_HOME/npm"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
@@ -36,6 +39,7 @@ export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 export PRETTIERD_SOCKET_DIR="$XDG_CACHE_HOME/prettierd"
 export OMNISHARPHOME="$XDG_CONFIG_HOME/omnisharp"
 export OLLAMA_MODELS="$XDG_DATA_HOME/ollama/models"
+export OLLAMA_HOME="$XDG_CONFIG_HOME/ollama"
 export NUGET_PACKAGES="$XDG_CACHE_HOME/NuGetPackages"
 export MPLCONFIGDIR="$XDG_CONFIG_HOME/matplotlib"
 export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
@@ -43,6 +47,10 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export DEGIT_CACHE="$XDG_CACHE_HOME/degit"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/ripgreprc"
+export TERMINFO="$XDG_DATA_HOME/terminfo"
+export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
+export VIMINFO="$XDG_STATE_HOME/vim/viminfo"
+# export YARN_RC_FILENAME=".yarnrc"
 
 # path
 export PATH="$HOME/.dotnet/tools:$PATH"
@@ -50,4 +58,10 @@ export PATH="$CARGO_HOME/bin:$PATH"
 export PATH="$XDG_CACHE_HOME/go/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/tmp/cmus/usr/local/bin:$PATH"
+export PATH="$HOME/.local/share/npm/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@24/bin:$PATH"
+# export PATH="$HOME/tmp/cmus/usr/local/bin:$PATH"
+
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
