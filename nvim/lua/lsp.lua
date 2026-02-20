@@ -18,7 +18,7 @@ local black    = { formatCommand = "black -q -", formatStdin = true }
 
 vim.lsp.config('efm', {
   init_options = { documentFormatting = true },
-  filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "json", "yaml", "markdown", "html", "css", "python" },
+  filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "svelte", "json", "yaml", "markdown", "html", "css", "python" },
   settings = {
     rootMarkers = {
       ".git/",
@@ -30,6 +30,7 @@ vim.lsp.config('efm', {
       typescriptreact = { prettier },
       javascript = { prettier },
       javascriptreact = { prettier },
+      svelte = { prettier },
       json = { prettier },
       yaml = { prettier },
       markdown = { prettier },
@@ -48,7 +49,7 @@ local disable_formatting_clients = {
 }
 
 vim.lsp.enable({ "ts_ls", "eslint", "efm", "html", "cssls", "tailwindcss", "clangd", "rust_analyzer", "gopls", "pyright",
-  "lua_ls", "tinymist" })
+  "lua_ls", "tinymist", "svelte" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)

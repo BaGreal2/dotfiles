@@ -8,12 +8,12 @@ return {
       vim.g.codeium_filetypes = {
         TelescopePrompt = false,
       }
-      vim.keymap.set('i', '<A-l>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
-      vim.keymap.set('i', '<A-w>', function() return vim.fn['codeium#AcceptNextWord']() end,
+      vim.keymap.set('i', '<A-y>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
+      vim.keymap.set('i', '<A-t>', function() return vim.fn['codeium#AcceptNextWord']() end,
         { expr = true, silent = true })
       vim.keymap.set('i', '<A-.>', function() return vim.fn['codeium#CycleCompletions'](1) end,
         { expr = true, silent = true })
-      vim.keymap.set('i', '<A-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
+      vim.keymap.set('i', '<A-/>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
         { expr = true, silent = true })
     end
   },
@@ -22,5 +22,9 @@ return {
     ft = { "typst" },
     version = '1.*',
     opts = {},
+  },
+  {
+    'evanleck/vim-svelte',
+    ft = { "svelte" },
   }
 }
