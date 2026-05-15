@@ -39,7 +39,7 @@ vim.keymap.set("n", "<leader>d", 'i<C-r>=strftime("%Y-%m-%d %H:%M:%S")<CR><Esc>'
 -- end)
 
 vim.keymap.set("n", "ga", "<Cmd>buffer #<CR>", { noremap = true })
-vim.keymap.set("n", "\\", ":buffer ", { noremap = true })
+-- vim.keymap.set("n", "\\", ":buffer ", { noremap = true })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.j2",
