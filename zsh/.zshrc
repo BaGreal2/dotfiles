@@ -9,6 +9,7 @@ alias ytv='yt-dlp -f "bv*[ext=mp4][vcodec^=avc1]+ba[ext=m4a]/b[ext=mp4][vcodec^=
 alias yta='yt-dlp -f "bestaudio" --extract-audio --audio-format mp3 --audio-quality 0 --add-metadata --parse-metadata "artist:%(uploader)s" -o "$HOME/music/xanin/tmp/%(title)s.%(ext)s"'
 alias fs='fastfetch --logo mac2_small --structure "title:os:host:kernel:uptime:packages:shell:wm:terminal:cpu:memory"'
 alias cmus='LC_ALL=C.UTF-8 cmus'
+alias python3='python3.14'
 
 alias yad='yarn app:dev'
 alias ydd='yarn dashboard:dev'
@@ -17,15 +18,17 @@ alias ywd='yarn website:dev'
 
 # base
 PROMPT_DIRTRIM=3
-bindkey -v
-bindkey '^P' up-line-or-history
-bindkey '^N' down-line-or-history
+bindkey -e
+# bindkey -v
+# bindkey '^P' up-line-or-history
+# bindkey '^N' down-line-or-history
 autoload -Uz edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd 'v' edit-command-line
+# bindkey -M vicmd 'v' edit-command-line
 
 # fzf
 export FZF_DEFAULT_OPTS=$'
+    --gutter=\'\ \'
     --color=fg:-1,bg:-1,hl:yellow
     --color=fg+:-1,bg+:-1,hl+:green
     --color=border:bright-black,header:blue,gutter:-1
@@ -79,6 +82,15 @@ bindkey -M viins '^D' delete-char
 # sources
 source "$ZDOTDIR/prompt.zsh"
 source "$ZDOTDIR/completions.zsh"
+
+# tmp
+[ -d ~/.claude ] && [ ! -L ~/.claude ] && {
+  mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/claude"
+  cp -a ~/.claude/* "${XDG_CONFIG_HOME:-$HOME/.config}/claude/" 2>/dev/null
+  # Remove original and replace with symlink
+  command rm -r ~/.claude
+  ln -s "${XDG_CONFIG_HOME:-$HOME/.config}/claude" ~/.claude
+}
 
 # hooks
 eval "$(direnv hook zsh)"
