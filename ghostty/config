@@ -1,0 +1,28 @@
+theme = zenbones_dark
+
+# Font
+font-thicken = true
+font-size = 16
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+
+font-family = "IosevkaTerm NFM"
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+
+# Window
+background-opacity = 1
+background-blur-radius = 0
+window-decoration = true
+macos-titlebar-style = hidden
+macos-option-as-alt = true
+window-padding-x = 10
+window-padding-y = 10
+
+window-width = 160
+window-height = 36
+
+term = xterm-256color
